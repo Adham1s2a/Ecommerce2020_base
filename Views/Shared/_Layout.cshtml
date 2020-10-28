@@ -107,10 +107,10 @@
                                 else
                                 {
                                     <li>
-                                        <a asp-controller="Account" asp-action="Register"><i class="fa fa-user-plus"></i> Register</a>
+                                        <a id="register" asp-controller="Account" asp-action="Register"><i class="fa fa-user-plus"></i> Register</a>
                                     </li>
                                     <li>
-                                        <a asp-controller="Account" asp-action="login"><i class="fa fa-lock"></i> Login</a>
+                                        <a id="login" asp-controller="Account" asp-action="login"><i class="fa fa-lock"></i> Login</a>
                                     </li>
                                 }
 
@@ -136,26 +136,28 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a asp-controller="home" asp-action="index" class="active">Home</a></li>
+                                <li><a id="home" asp-action="index" class="active">Home</a></li>
                                 @*<li class="dropdown">
-                                        <a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                        <ul role="menu" class="sub-menu">
-                                            <li><a href="shop.html">Products</a></li>
-                                            <li><a href="product-details.html">Product Details</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                        </ul>
-                                    </li>*@
+            <a href="#">Shop<i class="fa fa-angle-down"></i></a>
+            <ul role="menu" class="sub-menu">
+                <li><a href="shop.html">Products</a></li>
+                <li><a href="product-details.html">Product Details</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </li>*@
                                 @*<li class="dropdown">
-                                        <a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                        <ul role="menu" class="sub-menu">
-                                            <li><a href="blog.html">Blog List</a></li>
-                                            <li><a href="blog-single.html">Blog Single</a></li>
-                                        </ul>
-                                    </li>*@
+            <a href="#">Blog<i class="fa fa-angle-down"></i></a>
+            <ul role="menu" class="sub-menu">
+                <li><a href="blog.html">Blog List</a></li>
+                <li><a href="blog-single.html">Blog Single</a></li>
+            </ul>
+        </li>*@
                                 <li><a asp-controller="Admin" asp-action="Adminindex">Admin</a></li>
-                                <li><a href="contact-us.html">Contact</a></li>
+                                <li><a id="contact" href="contact-us.html">Contact</a></li>
+                                <li>  <button id="english">En</button></li>
+                                <li>  <button id="deutsch">Deu</button></li>
                             </ul>
                         </div>
                     </div>
@@ -334,7 +336,7 @@
     </footer><!--/Footer-->
 
 
-
+    <script src="~/js/multilangauge.js"></script>
     <script src="~/js/jquery.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/jquery.scrollUp.min.js"></script>
