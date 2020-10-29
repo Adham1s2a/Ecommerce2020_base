@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Ecommerce.Models;
 using Ecommerce.ViewModels;
@@ -131,22 +132,64 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await signInManger.PasswordSignInAsync(model.Email,
-                    model.Password, model.RememberMe, false);
 
-                if (result.Succeeded)
+                if (model.Email.IndexOf('@') > -1)
                 {
-                    if (Url.IsLocalUrl(returnUrl))
+                    //Validate email format
+                    string emailRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                                           @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                                              @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                    Regex re = new Regex(emailRegex);
+                    if (!re.IsMatch(model.Email))
                     {
-                        return Redirect(returnUrl);
+                        ModelState.AddModelError("Email", "Email is not valid");
                     }
-                    else
+                }
+                else
+                {
+                    //validate Username format
+                    string emailRegex = @"^[a-zA-Z0-9]*$";
+                    Regex re = new Regex(emailRegex);
+                    if (!re.IsMatch(model.Email))
                     {
-                        return RedirectToAction("index", "home");
+                        ModelState.AddModelError("Email", "Username is not valid");
                     }
                 }
 
+                if (ModelState.IsValid)
+                {
+                    var userName = model.Email;
+                    if (userName.IndexOf('@') > -1)
+                    {
+                        var user = await userManger.FindByEmailAsync(model.Email);
+                        if (user == null)
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                            return View(model);
+                        }
+                        else
+                        {
+                            userName = user.UserName;
+                        }
+                    }
+                    var result = await signInManger.PasswordSignInAsync(userName, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+                    if (result.Succeeded)
+                    {
+                        if (Url.IsLocalUrl(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("index", "home");
+                        }
+                    }
+                }
+                 
+
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+
             }
 
             return View(model);
