@@ -68,34 +68,14 @@
                             </a>
                         </div>
                         <div class="btn-group pull-right">
-                            @*<div class="btn-group">
-                                    <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                        USA
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Canada</a></li>
-                                        <li><a href="#">UK</a></li>
-                                    </ul>
-                                </div>*@
-
-                            @*<div class="btn-group">
-                                    <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                        DOLLAR
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Canadian Dollar</a></li>
-                                        <li><a href="#">Pound</a></li>
-                                    </ul>
-                                </div>*@
+             
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a id="account" asp-controller="Account" asp-action="Profile"><i class="fa fa-user"></i> Account</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+                                <li><a ><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                 <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 @if (SignInManager.IsSignedIn(User))
@@ -137,35 +117,18 @@
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a id="home" asp-action="index" class="active">Home</a></li>
-                                @*<li class="dropdown">
-            <a href="#">Shop<i class="fa fa-angle-down"></i></a>
-            <ul role="menu" class="sub-menu">
-                <li><a href="shop.html">Products</a></li>
-                <li><a href="product-details.html">Product Details</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </li>*@
-                                @*<li class="dropdown">
-            <a href="#">Blog<i class="fa fa-angle-down"></i></a>
-            <ul role="menu" class="sub-menu">
-                <li><a href="blog.html">Blog List</a></li>
-                <li><a href="blog-single.html">Blog Single</a></li>
-            </ul>
-        </li>*@
-                                <li><a asp-controller="Admin" asp-action="Adminindex">Admin</a></li>
-                                <li><a id="contact" href="contact-us.html">Contact</a></li>
-                                <li>  <button id="english">En</button></li>
-                                <li>  <button id="deutsch">Deu</button></li>
-                            </ul>
+                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                {
+                                    <li><a asp-controller="Admin" asp-action="Adminindex">Admin</a></li>
+                                    <li><a asp-controller="Administration" asp-action="ListRoles">Manage Roles</a></li>
+                                }
+                                    <li><a id="contact" href="contact-us.html">Contact</a></li>
+                                    <li>  <button id="english">En</button></li>
+                                    <li>  <button id="deutsch">Deu</button></li>
+                                </ul>
                         </div>
                     </div>
-                    @*<div class="col-sm-3">
-                            <div class="search_box pull-right">
-                                <input type="text" placeholder="Search" />
-                            </div>
-                        </div>*@
+
                 </div>
             </div>
         </div><!--/header-bottom-->
@@ -189,67 +152,7 @@
 
                         </div>
                     </div>
-                    @*<div class="col-sm-7">
-                            <div class="col-sm-3">
-                                <div class="video-gallery text-center">
-                                    <a href="#">
-                                        <div class="iframe-img">
-                                            <img src="~/images/home/iframe1.png" alt="" />
-                                        </div>
-                                        <div class="overlay-icon">
-                                            <i class="fa fa-play-circle-o"></i>
-                                        </div>
-                                    </a>
-                                    <p>Circle of Hands</p>
-                                    <h2>24 DEC 2014</h2>
-                                </div>
-                            </div>
 
-                            <div class="col-sm-3">
-                                <div class="video-gallery text-center">
-                                    <a href="#">
-                                        <div class="iframe-img">
-                                            <img src="~/images/home/iframe2.png" alt="" />
-                                        </div>
-                                        <div class="overlay-icon">
-                                            <i class="fa fa-play-circle-o"></i>
-                                        </div>
-                                    </a>
-                                    <p>Circle of Hands</p>
-                                    <h2>24 DEC 2014</h2>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="video-gallery text-center">
-                                    <a href="#">
-                                        <div class="iframe-img">
-                                            <img src="~/images/home/iframe3.png" alt="" />
-                                        </div>
-                                        <div class="overlay-icon">
-                                            <i class="fa fa-play-circle-o"></i>
-                                        </div>
-                                    </a>
-                                    <p>Circle of Hands</p>
-                                    <h2>24 DEC 2014</h2>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="video-gallery text-center">
-                                    <a href="#">
-                                        <div class="iframe-img">
-                                            <img src="~/images/home/iframe4.png" alt="" />
-                                        </div>
-                                        <div class="overlay-icon">
-                                            <i class="fa fa-play-circle-o"></i>
-                                        </div>
-                                    </a>
-                                    <p>Circle of Hands</p>
-                                    <h2>24 DEC 2014</h2>
-                                </div>
-                            </div>
-                        </div>*@
                     <div class="col-sm-3 col-sm-offset-8" style="margin-top: -100px;">
                         <div class="address">
                             <img src="~/images/home/map.png" alt="" />
@@ -275,18 +178,7 @@
                             </ul>
                         </div>
                     </div>
-                    @*<div class="col-sm-2">
-                            <div class="single-widget">
-                                <h2>Quock Shop</h2>
-                                <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">T-Shirt</a></li>
-                                    <li><a href="#">Mens</a></li>
-                                    <li><a href="#">Womens</a></li>
-                                    <li><a href="#">Gift Cards</a></li>
-                                    <li><a href="#">Shoes</a></li>
-                                </ul>
-                            </div>
-                        </div>*@
+
                     <div class="col-sm-2">
                         <div class="single-widget">
                             <h2>Policies</h2>
@@ -334,15 +226,16 @@
             </div>
 
     </footer><!--/Footer-->
-
-
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/js/multilangauge.js"></script>
-    <script src="~/js/jquery.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/jquery.scrollUp.min.js"></script>
     <script src="~/js/price-range.js"></script>
     <script src="~/js/jquery.prettyPhoto.js"></script>
     <script src="~/js/main.js"></script>
+
 </body>
 </html>
 

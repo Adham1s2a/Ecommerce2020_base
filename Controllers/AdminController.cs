@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Ecommerce.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly AppDbContext _context;

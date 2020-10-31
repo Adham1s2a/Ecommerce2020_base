@@ -1,5 +1,37 @@
 ﻿
 28/10/2020 
- ayham : create cart(cart view) , use local storage or cash for cart .
- adham : use role and login based on role and show Admin tab only for admins.
+
+	 ayham : create cart(cart view) , use local storage or cash for cart .
+	 adham : use role and login based on role and show Admin tab only for admins.
+
+------------------------------------------------------------------------------------------------
+
+ 29/10/2020
+
+	 Adham:     
+			  1-Login fixed now login done both with Email and username
+			  2-client side validation.
+			  3-remote validation for registration with already used EMail.
+			  4-Delete AspNetUsers data.
+			  5-creating Roles 
+
+	 Ayahm: 
+	      
+			  failed in drive exam :(
+
+-------------------------------------------------------------------------------------------------
+ 30-31 /10/2020
+
+	 Adham:     
+			  1-Create roles
+			  2-Get list of roles
+			  3-Edit roles
+			  4-Add and remove users fro the roles
+			  5-enable role bases authorization
+			  6-Show or hide navigation menu based on the role of the users
+
+	 Ayahm: 
+	      
+			
+
 
