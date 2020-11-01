@@ -12,6 +12,61 @@ body {
 	/*position: relative;*/
 	font-weight: 400px;
 }
+/* Blocks */
+.intro-section {
+	background-size: cover;
+	position: relative;
+}
+
+	.intro-section, .intro-section .container .row {
+		height: 100vh;
+		min-height: 500px;
+	}
+
+		.intro-section:before {
+			content: "";
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			background: rgba(0, 0, 0, 0.2);
+			border-bottom-right-radius: 0px;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+@media (max-width: 991.98px) {
+	.intro-section:before {
+		width: 100%;
+	}
+}
+
+.intro-section h1 {
+	font-size: 60px;
+	font-weight: 900;
+	line-height: 1;
+	color: #fff;
+}
+
+@media (max-width: 991.98px) {
+	.intro-section h1 {
+		font-size: 34px;
+	}
+}
+
+.intro-section p {
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 20px;
+}
+
+.intro-section.small, .intro-section.small .container .row {
+	height: 90vh;
+	min-height: 300px;
+}
+
+.intro-section .intro {
+	margin-top: 6rem;
+}
 
 ul li {
   list-style: none;

@@ -131,6 +131,43 @@ namespace Ecommerce.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public ViewResult EditItem(int id)
+        {
+            
+            Item item = itemRepository.GetItem(id);
+            ItemEditViewModel model = new ItemEditViewModel()
+            {
+                id = id,
+                ItemName = item.ItemName,
+                ItemDesc=item.ItemDesc,
+                SellPrice=item.SellPrice,
+                Quantity=item.Quantity,
+                excistingphotopath = item.Photopath
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult EditItem(ItemEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Item item = itemRepository.GetItem(model.id);
+                item.ItemName = model.ItemName;
+                item.ItemDesc = model.ItemDesc;
+                item.SellPrice = model.SellPrice;
+                item.Quantity = model.Quantity;
+                if (model.Photo != null)
+                {
+                    item.Photopath = Processuploadfile(model);
+                }
+
+                itemRepository.UpdateItem(item);
+                return RedirectToAction("CategoryItems", new { id = item.ID });
+            }
+            return View();
+        }
         
 
         // GET: Admin/Delete/5
