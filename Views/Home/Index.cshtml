@@ -1,5 +1,8 @@
 ﻿@model HomeViewModel;
 
+@using ReflectionIT.Mvc.Paging 
+@addTagHelper*,ReflectionIT.Mvc.Paging
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -90,10 +93,12 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="@photopath" asp-append-version="true" alt="" />
-                                        <h2>@item.ItemName</h2>
-                                        <p>@item.SellPrice</p>
-                                        <a asp-controller="Home" asp-action="ItemDetails" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a asp-controller="home" asp-action="ItemDetails" asp-route-id="@item.ID">
+                                            <img src="@photopath" asp-append-version="true" alt="" />
+                                            </a>
+                                            <h2>@item.ItemName</h2>
+                                            <p>@item.SellPrice</p>
+                                            <a asp-controller="Home" asp-action="ItemDetails" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
                                     @*<div class="@*product-overlay">
                                             <div class="overlay-content">
