@@ -1,5 +1,13 @@
 ﻿
-@model CategoryItemsViewmodel;
+@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@using X.PagedList;
+
+
+@model IEnumerable<Ecommerce.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
 <br />
 <br />
 <br />
@@ -13,14 +21,14 @@
      display:flex;
      justify-content:center;
      align-items:center;
-     min-height:100vh;
+     min-height:50vh;
      background:#111;">
 
     <!-- Swiper -->
     <div class="swiper-container">
         <div class="swiper-wrapper">
 
-            @foreach (var item in Model.items)
+            @foreach (var item in Model)
             {
                 var photopath = "~/Images/" + (item.Photopath ?? "noimage.jpg");
 
@@ -91,8 +99,7 @@
                     <h2>Category</h2>
                     <div class="panel-group category-products" id="accordian">
                         <div class="panel panel-default">
-
-                            @foreach (var cat in Model.categories)
+                            @foreach (var cat in ViewBag.Categories)
                             {
 
                                 <div class="panel-heading">
@@ -105,9 +112,7 @@
                                 </div>
 
                             }
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -115,60 +120,49 @@
                 <div class="features_items">
                     <!--features_items-->
                     <h2 class="title text-center">Features Items</h2>
-                    @foreach (var item in Model.items)
+                    <!-- paging control for navigation to the previous page, next page, etc -->
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("CategoryItems", new { page = page }),
+                        new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+                        {
+                            DisplayItemSliceAndTotal = true,
+                            ContainerDivClasses = new[] { "navigation" },
+                            LiElementClasses = new[] { "page-item" },
+                            PageClasses = new[] { "page-link" },
+                        })
+                    @foreach (var item in Model)
                     {
                         var photopath = "~/Images/" + (item.Photopath ?? "noimage.jpg");
 
-                <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <img src="@photopath" asp-append-version="true" alt="" />
-                                <h2>@item.SellPrice</h2>
-                                <p>@item.SellPrice</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-                            <div class="product-overlay">
-                                <div class="overlay-content">
-                                    <h2>@item.SellPrice</h2>
-                                    <p>@item.SellPrice</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="@photopath" asp-append-version="true" alt="" />
+                                        <h2>@item.SellPrice</h2>
+                                        <p>@item.SellPrice</p>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>@item.SellPrice</h2>
+                                            <p>@item.SellPrice</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="choose">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="choose">
-                            <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
                     }
-
-
                 </div>
             </div>
         </div>
 
     </div>
-
-    <div class="pb-5">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-lg">
-                    <div class="custom-pagination">
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
 </section>

@@ -42,7 +42,16 @@ namespace Ecommerce
             services.AddScoped<IItemRepository, SQLItemRepository>();
             services.AddScoped<IUserRepository, SQLUserRepository>();
             services.AddControllersWithViews();
-            services.AddPaging();
+            services.AddDistributedMemoryCache();//To Store session in Memory, This is default implementation of IDistributedCache    
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = false;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
         }
 
@@ -65,7 +74,8 @@ namespace Ecommerce
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-         
+            app.UseSession();
+
 
             app.UseEndpoints(endpoints =>
             {
