@@ -9,18 +9,28 @@ namespace Ecommerce.Models
 {
     public static class HelperClass
     {
-        public static void Add<T>(this ISession iSession, string key, T data)
+        public  static void SetObjectAsJson(this ISession session,string key,object value )
         {
-            string serializedData = JsonConvert.SerializeObject(data);
-            iSession.SetString(key, serializedData);
+            session.SetString(key, JsonConvert.SerializeObject(value));
         }
-        public static T Get<T>(this ISession iSession, string key)
+
+        public static T GetObjectFromJson<T>(this ISession session ,string key)
         {
-            var data = iSession.GetString(key);
-            if (null != data)
-                return JsonConvert.DeserializeObject<T>(data);
-            return default(T);
+            var value = session.GetString(key);
+            return value == null ? default : JsonConvert.DeserializeObject<T>(value);
         }
+        //public static void Add<T>(this ISession iSession, string key, T data)
+        //{
+        //    string serializedData = JsonConvert.SerializeObject(data);
+        //    iSession.SetString(key, serializedData);
+        //}
+        //public static T Get<T>(this ISession iSession, string key)
+        //{
+        //    var data = iSession.GetString(key);
+        //    if (null != data)
+        //        return JsonConvert.DeserializeObject<T>(data);
+        //    return default(T);
+        //}
 
     }
 }

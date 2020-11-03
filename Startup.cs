@@ -47,8 +47,8 @@ namespace Ecommerce
 
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.HttpOnly = false;
+                options.IdleTimeout = TimeSpan.FromSeconds(20);
+                options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
 
