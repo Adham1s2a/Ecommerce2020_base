@@ -67,7 +67,7 @@ namespace Ecommerce.Controllers
             //    items = iitem.GetCategoryItems(id)
             //};
             var pageNumber = page ?? 1; // if no page is specified, default to the first page (1)
-            int pageSize = 12; // Get 12 Items for each requested page.
+            int pageSize = 3; // Get 12 Items for each requested page.
             var onePageOfItems = iitem.GetCategoryItems(id).ToPagedList(pageNumber, pageSize);
             return View(onePageOfItems); // Send 12 Items to the page.
         }

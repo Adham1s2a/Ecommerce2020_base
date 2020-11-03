@@ -127,11 +127,12 @@
                             DisplayItemSliceAndTotal = true,
                             ContainerDivClasses = new[] { "navigation" },
                             LiElementClasses = new[] { "page-item" },
-                            PageClasses = new[] { "page-link" },
+                            PageClasses = new[] { "page-link" }, 
                         })
                     @foreach (var item in Model)
                     {
                         var photopath = "~/Images/" + (item.Photopath ?? "noimage.jpg");
+
 
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
