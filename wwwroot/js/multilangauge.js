@@ -8,9 +8,10 @@ let account = document.getElementById("account");
 let features_items = document.getElementById("features items");
 let category = document.getElementById("category");
 let recommended = document.getElementById("recommended");
+let checkout = document.getElementById("checkout");
 
 
-recommended
+
 
 english.onclick = () => {
     setLanguage("english");
@@ -37,26 +38,59 @@ onload = () => {
 function setLanguage(getlanguage) {
 
     if (getlanguage === "english") {
+        if (window.location.pathname === "/") {
 
-        title.innerHTML = "Home";
-        contact.innerHTML = "Contact";
-        login.innerHTML = "login";
-        register.innerHTML = "Register";
-        account.innerHTML = "Account";
-        features_items.innerHTML = "Features items";
-        category.innerHTML = "Category";
-        recommended.innerHTML = "recommended items";
+            title.innerHTML = "Home";
+            contact.innerHTML = "Contact";
+            login.innerHTML = "login";
+            register.innerHTML = "Register";
+            account.innerHTML = "Account";
+            features_items.innerHTML = "Features items";
+            category.innerHTML = "Category";
+            recommended.innerHTML = "recommended items";
+            checkout.innerHTML = "Checkout";
+        }
+        else {
+            if (window.location.pathname === "/Account/login") {
+                title.innerHTML = "Home";
+                contact.innerHTML = "Contact";
+                login.innerHTML = "login";
+                register.innerHTML = "Register";
+                account.innerHTML = "Account";
+                checkout.innerHTML = "Checkout";
 
-    } else if (getlanguage === "deutsch") {
+            }
+        }
 
-        title.innerHTML = "Home";
-        contact.innerHTML = "Kontakt";
-        login.innerHTML = "Anmeldung";
-        register.innerHTML = "Registrieren";
-        account.innerHTML = "Konto";
-        features_items.innerHTML = "Top-Artikel";
-        category.innerHTML = "Kategorie";
-        recommended.innerHTML = "Empfohlene-Artikel";
+
+    }
+    else if (getlanguage === "deutsch") {
+        if (window.location.pathname === "/") {
+            title.innerHTML = "Home";
+            contact.innerHTML = "Kontakt";
+            login.innerHTML = "Anmeldung";
+            register.innerHTML = "Registrieren";
+            account.innerHTML = "Konto";
+            features_items.innerHTML = "Top-Artikel";
+            category.innerHTML = "Kategorie";
+            recommended.innerHTML = "Empfohlene-Artikel";
+            checkout.innerHTML = "Prüfen";
+
+        }
+        else
+        {
+            if (window.location.pathname === "/Account/login")
+            {
+                title.innerHTML = "Home";
+                contact.innerHTML = "Kontakt";
+                login.innerHTML = "Anmeldung";
+                register.innerHTML = "Registrieren";
+                account.innerHTML = "Konto";
+                checkout.innerHTML = "Prüfen";
+
+            }
+                
+        }
 
     }
 }

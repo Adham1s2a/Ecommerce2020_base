@@ -11,6 +11,8 @@ body {
 	background: rgba(0,0,0,0.075);
 	/*position: relative;*/
 	font-weight: 400px;
+	/*background-image: url(../img/w-qjCHPZbeXCQ-unsplash.jpg);
+	background-repeat: repeat-y;*/
 }
 /* Blocks */
 .intro-section {
@@ -402,6 +404,7 @@ ul.sub-menu {
 
 #footer {
 	background: #428bca59;
+
 }
 
 
