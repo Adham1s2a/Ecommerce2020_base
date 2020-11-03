@@ -27,8 +27,9 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 
-<body>
-    <header id="header">
+<body onload="setLanguage">
+    <header id="header" style="background-image: url(../img/w-qjCHPZbeXCQ-unsplash.jpg) ;
+	background-repeat: repeat-y;">
         <!--header-->
         <div class="header_top">
             <!--header_top-->
@@ -62,13 +63,26 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="logo pull-left">
-                            <a asp-controller="home" asp-action="index">
-                                <img src="~/img/Kiddo-designstyle-kiddo-m.png" width="200" height="80" style="margin-top: -20px" ; alt="" />
-                            </a>
-                        </div>
-                        <div class="btn-group pull-right">
-             
+                        @*<div class="logo pull-left">
+            <a asp-controller="home" asp-action="index">
+                <img src="~/img/Kiddo-designstyle-kiddo-m.png" width="200" height="80" style="margin-top: -20px" ; alt="" />
+            </a>
+        </div>*@
+                        @*<div class="btn-group pull-right">
+
+        </div>*@
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a id="home" asp-controller="home" asp-action="index" class="active">Home</a></li>
+                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                {
+                                    <li><a asp-controller="Admin" asp-action="Adminindex">Admin</a></li>
+                                    <li><a asp-controller="Administration" asp-action="ListRoles">Manage Roles</a></li>
+                                }
+                                <li><a id="contact" href="contact-us.html">Contact</a></li>
+                                <li>  <button id="english">En</button></li>
+                                <li>  <button id="deutsch">Deu</button></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -76,7 +90,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a id="account" asp-controller="Account" asp-action="Profile"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a ><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                                <li><a id="checkout" href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                 <li><a asp-controller="Cart" asp-action="CartItems"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 @if (SignInManager.IsSignedIn(User))
                                 {
@@ -114,19 +128,7 @@
                                 <span class="icon-bar"></span>
                             </button>
                         </div>
-                        <div class="mainmenu pull-left">
-                            <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a id="home" asp-action="index" class="active">Home</a></li>
-                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                                {
-                                    <li><a asp-controller="Admin" asp-action="Adminindex">Admin</a></li>
-                                    <li><a asp-controller="Administration" asp-action="ListRoles">Manage Roles</a></li>
-                                }
-                                    <li><a id="contact" href="contact-us.html">Contact</a></li>
-                                    <li>  <button id="english">En</button></li>
-                                    <li>  <button id="deutsch">Deu</button></li>
-                                </ul>
-                        </div>
+                        
                     </div>
 
                 </div>
@@ -141,7 +143,8 @@
     </div>
 
 
-    <footer id="footer">
+    <footer id="footer" style="background-image: url(../img/w-qjCHPZbeXCQ-unsplash.jpg) ;
+	background-repeat: repeat-y;">
         <!--Footer-->
         <div class="footer-top" style="height: 200px;">
             <div class="container">
@@ -210,7 +213,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2 col-md-offset-11">
-                        <img src="~/img/card.png" />
+                        <img src="~/img/card2.png" />
 
                     </div>
                 </div>
