@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Ecommerce.Models;
 using Ecommerce.ViewModels;
+using X.PagedList;
 
 namespace Ecommerce.Controllers
 {
@@ -58,16 +59,17 @@ namespace Ecommerce.Controllers
             return View(items);
         }
         
-        public IActionResult CategoryItems(int id,int page = 1)
+        public IActionResult CategoryItems(int id, int? page)
         {
-            CategoryItemsViewmodel categoryItemsViewmodel = new CategoryItemsViewmodel()
-            {
-                categories = icategory.GetAllCategories(),
-                items = iitem.GetCategoryItems(id)
-            };
-
-            return View(categoryItemsViewmodel);
-
+            ViewBag.Categories = icategory.GetAllCategories();
+            //CategoryItemsViewmodel categoryItemsViewmodel = new CategoryItemsViewmodel()
+            //{       
+            //    items = iitem.GetCategoryItems(id)
+            //};
+            var pageNumber = page ?? 1; // if no page is specified, default to the first page (1)
+            int pageSize = 3; // Get 12 Items for each requested page.
+            var onePageOfItems = iitem.GetCategoryItems(id).ToPagedList(pageNumber, pageSize);
+            return View(onePageOfItems); // Send 12 Items to the page.
         }
 
         public IActionResult Privacy()
@@ -79,7 +81,6 @@ namespace Ecommerce.Controllers
             var item = iitem.GetItem(id);
             return View(item);
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

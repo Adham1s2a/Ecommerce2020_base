@@ -1,16 +1,98 @@
 ﻿@model HomeViewModel;
 
-@using ReflectionIT.Mvc.Paging 
-@addTagHelper*,ReflectionIT.Mvc.Paging
-
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-    <div class="row">
 
-        @foreach (var category in Model.CategoryList)
+<link href="~/css/swiper-bundle.min.css" rel="stylesheet" />
+
+<div style="
+     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+     font-size: 14px;
+     color: #000;
+     margin-bottom:15px;
+     display:flex;
+     justify-content:center;
+     align-items:center;
+     min-height:50vh;
+     background:#fff">
+
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+
+            @foreach (var category in Model.CategoryList)
+            {
+                var photopath = "~/Images/" + (category.Photopath ?? "noimage.jpg");
+
+                <div class="swiper-slide">
+                    <a asp-controller="home" asp-action="InstaStory" asp-route-id="@category.ID">
+                        <img src="@photopath" style="width: 250px;height: 250px;border-radius: 50%;border: groove;border-color: dodgerblue" asp-append-version="true" />
+                    </a>
+                </div>
+
+            }<!--1------------------------------>
+
+
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="../package/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+</div>
+
+<style>
+
+    .swiper-container {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 100px;
+    }
+
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 250px;
+        height: 250px;
+        background: #000;
+        border-radius: 50%;
+        -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0006);
+    }
+</style>
+<script src="~/js/swiper-bundle.min.js"></script>
+@section Scripts {
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 20,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: false,
+            },
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+    </script>
+}
+<div class="row">
+
+    @*@foreach (var category in Model.CategoryList)
         {
             var photopath = "~/Images/" + (category.Photopath ?? "noimage.jpg");
             <div class="col-md-2">
@@ -18,10 +100,10 @@
                     <img src="@photopath" asp-append-version="true" style="border:groove;border-color:dodgerblue; margin-bottom:35px;margin-right:10px ;height:210px;width:190px;border-radius: 50%">
                 </a>
             </div>
-        }
+        }*@
 
-    </div>
 </div>
+
 <section>
     <div class="container">
         <div class="row">
@@ -44,29 +126,7 @@
                             }
                         </div>
                     </div><!--/category-products-->
-                    @*<div class="brands_products">
-                            brands_products
-                            <h2>Brands</h2>
-                            <div class="brands-name">
-                                <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-                                    <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-                                    <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-                                    <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-                                    <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-                                    <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-                                    <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-                                </ul>
-                            </div>
-                        </div>*@<!--/brands_products-->
-                    @*<div class="price-range">
-                            price-range
-                            <h2>Price Range</h2>
-                            <div class="well text-center">
-                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
-                                <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-                            </div>
-                        </div>*@<!--/price-range-->
+                
 
                     <div class="shipping text-center">
                         <!--shipping-->
@@ -75,7 +135,7 @@
                     <div class="shipping text-center">
                         <!--shipping-->
 
-                        <img src="~/img/0667d1dd450e8b6f4796deb50773ea89.jpg.png"   alt="" />
+                        <img src="~/img/0667d1dd450e8b6f4796deb50773ea89.jpg.png" alt="" />
                     </div><!--/shipping-->
 
                 </div>
@@ -93,12 +153,10 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <a asp-controller="home" asp-action="ItemDetails" asp-route-id="@item.ID">
-                                            <img src="@photopath" asp-append-version="true" alt="" />
-                                            </a>
-                                            <h2>@item.ItemName</h2>
-                                            <p>@item.SellPrice</p>
-                                            <a asp-controller="Home" asp-action="ItemDetails" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <img src="@photopath" asp-append-version="true" alt="" />
+                                        <h2>@item.ItemName</h2>
+                                        <p>@item.SellPrice</p>
+                                        <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
                                     @*<div class="@*product-overlay">
                                             <div class="overlay-content">

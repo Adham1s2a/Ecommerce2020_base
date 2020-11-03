@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.ViewModels
 {
-    public class CategoryItemsViewmodel :Item
+    public class CartViewModel
     {
-       public List<Item> items { get; set; }
+        public Item item{ get; set; }
+        public int Q { get; set; }
     }
 }

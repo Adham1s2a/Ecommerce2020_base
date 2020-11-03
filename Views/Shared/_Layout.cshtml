@@ -77,7 +77,7 @@
                                 <li><a id="account" asp-controller="Account" asp-action="Profile"><i class="fa fa-user"></i> Account</a></li>
                                 <li><a ><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                <li><a asp-controller="Cart" asp-action="CartItems"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 @if (SignInManager.IsSignedIn(User))
                                 {
                                     <li>
