@@ -110,40 +110,47 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
         <ul class="nav sidebar-nav">
             <li class="sidebar-brand">
-                <a id="category">
-                    Category
+                <a >
+                    Menu
                 </a>
             </li>
-            <li>
-                @*<div class="panel panel-default">*@
+            @*<li>
+                <div class="panel panel-default">
                     @foreach (var category in Model.CategoryList)
                     {
-                        @*<div class="panel-heading">*@
-                            @*<h4 class="panel-title">*@
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
                                 <a asp-controller="home" asp-action="CategoryItems" asp-route-id="@category.ID">
-                                    @*<span class="badge pull-right"><i class="fa fa-plus"></i></span>*@
+                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
                                     @category.CategoryName
                                 </a>
-                            @*</h4>*@
-                        @*</div>*@
+                            </h4>
+                        </div>
                     }
-                @*</div>*@
-            </li>
+                </div>
+            </li>*@
             <li>
                 <a href="#">Home</a>
             </li>
 
-            @*<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+            <li class="dropdown">
+            <a id="category" class="dropdown-toggle" data-toggle="dropdown">Category <span class="caret pull-right"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Dropdown heading</li>
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li>
+                   
+                    @foreach (var category in Model.CategoryList)
+                    {
+                       
+                        <a asp-controller="home" asp-action="CategoryItems" asp-route-id="@category.ID">
+                            @*<span class="badge pull-right"><i class="fa fa-plus"></i></span>*@
+                            @category.CategoryName
+                        </a>
+                       
+                    }
+                   
+                </li>
             </ul>
-        </li>*@
+        </li>
 
         </ul>
     </nav>
@@ -198,7 +205,7 @@
                     </div>
                 </div>*@
 
-            <div class="col-sm-9 padding-right">
+            <div class="col-sm-offset padding-right">
                 <div class="features_items">
                     <!--features_items-->
                     <h2 id="features items" class="title text-center">Features Items</h2>
@@ -210,7 +217,9 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="@photopath" asp-append-version="true" alt="" />
+                                        <a asp-controller="home" asp-action="ItemDetails" asp-route-id="@item.ID">
+                                            <img  src="@photopath" asp-append-version="true" alt="" />
+                                        </a>
                                         <h2>@item.ItemName</h2>
                                         <p>@item.SellPrice</p>
                                         <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
