@@ -16,6 +16,12 @@
     <link href="~/css/animate.css" rel="stylesheet">
     <link href="~/css/main.css" rel="stylesheet">
     <link href="~/css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="~/css/sidebartest.css" rel="stylesheet" />
+    <link href="~/css/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -27,8 +33,8 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 
-<body>
-    <header id="header">
+<body onload="setLanguage()">
+    <header id="header" style="background-image:url(../img/w-qjCHPZbeXCQ-unsplash.jpg)">
         <!--header-->
         <div class="header_top">
             <!--header_top-->
@@ -50,6 +56,15 @@
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li>
+                                    <img id="english"  src="~/img/united-kingdom.png" style="width: 20px;margin-top: 8px;margin-left: 10px;" />
+                                </li>
+                                <li>
+                                    <img id="deutsch" src="~/img/germany.png" style="width: 20px;margin-top: 8px;margin-left: 10px;" />
+                                </li>
+                                <li>
+                                    <img id="France" src="~/img/france.png" style="width: 20px;margin-top: 8px;margin-left: 10px;" />
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -68,29 +83,29 @@
                             </a>
                         </div>
                         <div class="btn-group pull-right">
-             
+
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a id="account" asp-controller="Account" asp-action="Profile"><i class="fa fa-user"></i> Account</a></li>
-                                <li><a ><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li><a asp-controller="Cart" asp-action="CartItems"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                <li><i class="fa fa-user"> <a id="account" asp-controller="Account" asp-action="Profile">Account</a></i></li>
+                                @*<li><a ><i class="fa fa-star"></i> Wishlist</a></li>*@
+                                <li><i class="fa fa-crosshairs"><a id="checkout" href="checkout.html"> Checkout</a></i></li>
+                                <li><i class="fa fa-shopping-cart"><a asp-controller="Cart" asp-action="CartItems"> Cart</a></i></li>
                                 @if (SignInManager.IsSignedIn(User))
                                 {
                                     <li>
-                                        <a asp-controller="Account" asp-action="Logout"><i class="fa fa-sign-out"></i> Logout @User.Identity.Name</a>
+                                        <i class="fa fa-sign-out"><a asp-controller="Account" asp-action="Logout"> Logout @User.Identity.Name</a></i>
                                     </li>
                                 }
                                 else
                                 {
                                     <li>
-                                        <a id="register" asp-controller="Account" asp-action="Register"><i class="fa fa-user-plus"></i> Register</a>
+                                        <i class="fa fa-user-plus"><a id="register" asp-controller="Account" asp-action="Register"> Register</a></i>
                                     </li>
                                     <li>
-                                        <a id="login" asp-controller="Account" asp-action="login"><i class="fa fa-lock"></i> Login</a>
+                                        <i class="fa fa-lock"><a id="login" asp-controller="Account" asp-action="login"> Login</a></i>
                                     </li>
                                 }
 
@@ -122,13 +137,28 @@
                                     <li><a asp-controller="Admin" asp-action="Adminindex">Admin</a></li>
                                     <li><a asp-controller="Administration" asp-action="ListRoles">Manage Roles</a></li>
                                 }
-                                    <li><a id="contact" href="contact-us.html">Contact</a></li>
-                                    <li>  <button id="english">En</button></li>
-                                    <li>  <button id="deutsch">Deu</button></li>
-                                </ul>
+                                <li><a id="contact" href="contact-us.html">Contact</a></li>
+                                @*<li>  <button id="english">En</button></li>
+                                <li>  <button id="deutsch">Deu</button></li>*@
+                            </ul>
                         </div>
-                    </div>
 
+                        @*<div class="mainmenu pull-right">
+                            <ul class="nav navbar-nav collapse navbar-collapse w3-right">
+                                <li class="dropdown">
+                                    <a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.html">Products</a></li>
+                                        <li><a href="product-details.html">Product Details</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>*@
+
+                    </div>
                 </div>
             </div>
         </div><!--/header-bottom-->
@@ -224,7 +254,8 @@
                     </div>
                 </div>
             </div>
-
+</div>
+        
     </footer><!--/Footer-->
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/jquery-validate/jquery.validate.js"></script>

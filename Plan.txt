@@ -43,3 +43,21 @@
 
 adham : pagination, cart
 ayham languages
+------------------------------------------------------------------------------------------------------
+ 4-5/11/2020
+
+adham :
+	checkout (sum of all items in the cart + knowloadge for api)
+	confirmation for account form google.
+
+Ayham:
+   language 
+   item details 
+   profile
+   language
+
+---------------------------------------------------------------------------------------------------------
+
+6/11/2020
+
+adham : orders
