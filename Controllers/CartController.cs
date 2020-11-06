@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Models;
 using Ecommerce.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly IItemRepository itemRepository;

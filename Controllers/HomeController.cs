@@ -49,6 +49,11 @@ namespace Ecommerce.Controllers
 
             return View();
         }
+        public IActionResult sidebar()
+        {
+
+            return View();
+        }
         // to get to instagram story
         public IActionResult InstaStory(int id)
         {

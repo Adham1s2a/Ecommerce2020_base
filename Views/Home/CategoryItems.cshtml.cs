@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Ecommerce.Views.Admin
+namespace Ecommerce.Views.Home
 {
-    public class itemsModel : PageModel
+    public class CategoryItemsModel : PageModel
     {
         public void OnGet()
         {
