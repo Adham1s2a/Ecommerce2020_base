@@ -36,14 +36,20 @@ onload = () => {
 
 
 function setLanguage(getlanguage) {
+    var sPath = window.location.pathname.split('/');
+    var secondLevelLocation = "/" + sPath[1] + "/" + sPath[2];
 
     if (getlanguage === "english") {
         if (window.location.pathname === "/") {
 
             title.innerHTML = "Home";
             contact.innerHTML = "Contact";
-            login.innerHTML = "login";
-            register.innerHTML = "Register";
+            if (login !== null) {
+                login.innerHTML = "login";
+            }
+            if (register !== null) {
+                register.innerHTML = "Register";
+            }
             account.innerHTML = "Account";
             features_items.innerHTML = "Features items";
             category.innerHTML = "Category";
@@ -54,11 +60,33 @@ function setLanguage(getlanguage) {
             if (window.location.pathname === "/Account/login") {
                 title.innerHTML = "Home";
                 contact.innerHTML = "Contact";
-                login.innerHTML = "login";
-                register.innerHTML = "Register";
+                if (login !== null) {
+                    login.innerHTML = "login";
+                }
+                if (register !== null) {
+                    register.innerHTML = "Register";
+                }
                 account.innerHTML = "Account";
                 checkout.innerHTML = "Checkout";
 
+            }
+            else {
+                if (secondLevelLocation === "/home/CategoryItems") {
+                    title.innerHTML = "Home";
+                    contact.innerHTML = "Contact";
+                    if (login !== null) {
+                        login.innerHTML = "login";
+                    }
+                    if (register !== null) {
+                        register.innerHTML = "Register";
+                    }
+                    account.innerHTML = "Account";
+                    features_items.innerHTML = "Features items";
+                    category.innerHTML = "Category";
+
+                    checkout.innerHTML = "Checkout";
+
+                }
             }
         }
 
@@ -68,8 +96,12 @@ function setLanguage(getlanguage) {
         if (window.location.pathname === "/") {
             title.innerHTML = "Home";
             contact.innerHTML = "Kontakt";
-            login.innerHTML = "Anmeldung";
-            register.innerHTML = "Registrieren";
+            if (login !== null) {
+                login.innerHTML = "Anmeldung";
+            }
+            if (register !== null) {
+                register.innerHTML = "Registrieren";
+            }
             account.innerHTML = "Konto";
             features_items.innerHTML = "Top-Artikel";
             category.innerHTML = "Kategorie";
@@ -77,19 +109,39 @@ function setLanguage(getlanguage) {
             checkout.innerHTML = "Prüfen";
 
         }
-        else
-        {
-            if (window.location.pathname === "/Account/login")
-            {
+        else {
+            if (window.location.pathname === "/Account/login") {
                 title.innerHTML = "Home";
                 contact.innerHTML = "Kontakt";
-                login.innerHTML = "Anmeldung";
-                register.innerHTML = "Registrieren";
+                if (login !== null) {
+                    login.innerHTML = "Anmeldung";
+                }
+                if (register !== null) {
+                    register.innerHTML = "Registrieren";
+                }
                 account.innerHTML = "Konto";
                 checkout.innerHTML = "Prüfen";
 
             }
-                
+            else {
+                if (secondLevelLocation === "/home/CategoryItems") {
+                    title.innerHTML = "Home";
+                    contact.innerHTML = "Kontakt";
+                    if (login !== null) {
+                        login.innerHTML = "Anmeldung";
+                    }
+                    if (register !== null) {
+                        register.innerHTML = "Registrieren";
+                    }
+                    account.innerHTML = "Konto";
+                    features_items.innerHTML = "Top-Artikel";
+                    category.innerHTML = "Kategorie";
+
+                    checkout.innerHTML = "Prüfen";
+
+                }
+            }
+
         }
 
     }

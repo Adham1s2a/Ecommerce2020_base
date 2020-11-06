@@ -517,15 +517,15 @@ ul.sub-menu {
 	width:100%;
 }
 
-.address p {
-  color: #666663;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  left: 25px;
-  position: absolute;
-  top: 50px;
-}
+	.address p {
+		color: #ccc;
+		font-family: 'Roboto', sans-serif;
+		font-size: 14px;
+		font-weight: 300;
+		left: 25px;
+		position: absolute;
+		top: 50px;
+	}
 
 .footer-widget {
   margin-bottom: 68px;
@@ -537,20 +537,20 @@ ul.sub-menu {
 }
 
 .single-widget h2 {
-  color: #666663;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 22px;
-  text-transform: uppercase;
+	color: #101010d9;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	margin-bottom: 22px;
+	text-transform: uppercase;
 }
 
 .single-widget h2 i{
 	margin-right:15px;
 }
 
-.single-widget ul li a{
-	color: #8C8C88;
+.single-widget ul li a {
+	color: #ccccccbf;
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	font-weight: 300;
@@ -1690,8 +1690,8 @@ h2.title {
 
 .cart_product {
   display: block;
-  margin: 15px -70px 10px 25px;
-}
+/*  margin: 15px -70px 10px 25px;
+*/}
 
 .cart_quantity_button a {
   background:#F0F0E9;

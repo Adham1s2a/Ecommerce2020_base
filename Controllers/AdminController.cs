@@ -80,7 +80,8 @@ namespace Ecommerce.Controllers
                     IsDeleted = false,
                     ActionBy = 1,
                     ActionOn = DateTime.Now,
-                    Photopath = UniqueFile
+                    Photopath = UniqueFile,
+                    //Background = UniqueFile
 
 
                 };
@@ -106,7 +107,8 @@ namespace Ecommerce.Controllers
                 OfferAmount  = Convert.ToDouble(category.OfferAmount),
                 OfferPersent = Convert.ToInt32(category.OfferPersent),
                 OfferStatus  = category.OfferStatus, 
-                excistingphotopath = category.Photopath
+                excistingphotopath = category.Photopath,
+                ///*excistingBackground*/=category.Background
             };
 
             return View(model);
@@ -125,6 +127,10 @@ namespace Ecommerce.Controllers
                 {
                     category.Photopath = Processuploadfile(model);
                 }
+                //if (model.BG != null)
+                //{
+                //    category.Photopath = Processuploadfile(model);
+                //}
 
                 categoryRepositoy.UpdateCategory(category);
                 return RedirectToAction("details", new { id = category.ID });

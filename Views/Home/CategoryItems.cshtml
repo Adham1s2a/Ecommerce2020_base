@@ -13,6 +13,7 @@
 <br />
 <br />
 <link href="~/css/swiper-bundle.min.css" rel="stylesheet" />
+@*<script src="~/js/multilangauge - Categoryitems.js"></script>*@
 
 <div style="
      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -177,7 +178,7 @@
             <div class="col-sm-9 padding-right">
                 <div class="features_items">
                     <!--features_items-->
-                    <h2 class="title text-center">Features Items</h2>
+                    <h2 id="features items" class="title text-center">Features Items</h2>
                     <!-- paging control for navigation to the previous page, next page, etc -->
                     @Html.PagedListPager((IPagedList)Model, page => Url.Action("CategoryItems", new { page = page }),
                         new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
@@ -254,3 +255,14 @@
             $('#wrapper').toggleClass('toggled');
         });
     });</script>
+@*<script>
+    var sPath = window.location.pathname.split('/');
+    var secondLevelLocation = "/"+sPath[1]+"/"+sPath[2];
+    //var newPathname = "";
+    //for (i = 0; i < sPath.length-1; i++) {
+        
+    //    newPathname += sPath[i];
+    //    newPathname += "/";
+    //}
+    alert(secondLevelLocation);
+</script>*@

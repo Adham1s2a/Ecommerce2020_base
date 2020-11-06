@@ -9,5 +9,6 @@ namespace Ecommerce.ViewModels
     {
         public int id { get; set; }
         public string excistingphotopath { get; set; }
+        //public string excistingBackground { get; set; }
     }
 }

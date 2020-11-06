@@ -17,5 +17,6 @@ namespace Ecommerce.ViewModels
         public DateTime ActionOn { get; set; }
 
         public IFormFile Photo { get; set; }
+        public IFormFile BG { get; set; }
     }
 }
