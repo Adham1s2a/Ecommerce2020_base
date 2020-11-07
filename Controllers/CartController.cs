@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace Ecommerce.Controllers
 {
@@ -25,11 +26,23 @@ namespace Ecommerce.Controllers
         }
         public IActionResult CartItems()
         {
-            // List<CartItemsModel> sessiondata = JsonConvert.DeserializeObject<List<CartItemsModel>>(HttpContext.Session.GetString("cart"));
-            var cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session,"cart");
-            ViewBag.cart = cart;
-            ViewBag.total = cart.Sum(X => X.item.SellPrice * X.Q);
-            return View();
+            ViewBag.datafound = 0;
+            if (HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart") == null)
+            {
+
+                ViewBag.message = "No item in the shopping cart";
+                ViewBag.datafound = 0;
+                return View();
+            }
+            else
+            {
+                ViewBag.datafound = 1;
+                // List<CartItemsModel> sessiondata = JsonConvert.DeserializeObject<List<CartItemsModel>>(HttpContext.Session.GetString("cart"));
+                var cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart");
+                ViewBag.cart = cart;
+                ViewBag.total = cart.Sum(X => X.item.SellPrice * X.Q);
+                return View();
+            }
         }
 
         private int IsExist(int id)
@@ -45,8 +58,10 @@ namespace Ecommerce.Controllers
             return -1;
         }
 
-        public IActionResult AddtoCart(int id)
+        public IActionResult AddtoCart(int id,string returnUrl)
         {
+            //ViewBag.pathb = Request.GetDisplayUrl();
+            //string absolutepath = HttpContext.Current.Request.Url.AbsolutePath;
             CartViewModel item = new CartViewModel()
             {
                 item = itemRepository.GetItem(id),
@@ -75,8 +90,8 @@ namespace Ecommerce.Controllers
                 }
                 HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
-
-            return RedirectToAction("index","home");
+              return Redirect(Request.Headers["Referer"].ToString());
+            
         }
 
         public IActionResult Remove(int id)

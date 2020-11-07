@@ -26,45 +26,53 @@
                     </tr>
                 </thead>
                 <tbody>
-
-
-                    @foreach (var catitem in ViewBag.cart)
+                    @if(ViewBag.datafound == 0)
                     {
-                        var photopath = "https://localhost:44362/Images/" + (catitem.item.Photopath ?? "noimage.jpg");
 
                         <tr>
-                            <td class="cart_product" style="width: 100px;">
-                                <img src="@photopath" style="width: 100px;"alt="">
-                            </td>
-                            <td class="cart_description">
-                                <h4><a href="">@catitem.item.ItemName</a></h4>
 
-                            </td>
-                            <td  class="cart_price">
-                                <p id="price">@catitem.item.SellPrice</p>
-                            </td>
-                            <td class="cart_quantity">
-                                <div class="cart_quantity_button">
-                                    <a class="cart_quantity_up" href=""> + </a>
-                                    <input id="quantity" class="cart_quantity_input" type="text" name="quantity" value=@catitem.Q autocomplete="off" size="2">
-                                    <a class="cart_quantity_down" href=""> - </a>
-                                </div>
-                            </td>
-                            <td class="cart_total">
-                                <p id="total" class="cart_total_price"> 
-                                
-                                </p>
-                            </td>
-                            <td class="cart_delete">
-                                <a class="cart_quantity_delete" asp-controller="Cart" asp-action="Remove" asp-route-id="@catitem.item.ID"><i class="fa fa-times"></i></a>
+                            @ViewBag.message;
+                        </tr>
+                    }
+
+                    else
+                    {
+                        @foreach (var catitem in ViewBag.cart)
+                        {
+                            var photopath = "https://localhost:44362/Images/" + (catitem.item.Photopath ?? "noimage.jpg");
+
+                            <tr>
+                                <td class="cart_product" style="width: 100px;">
+                                    <img src="@photopath" style="width: 100px;"alt="">
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="">@catitem.item.ItemName</a></h4>
+
+                                </td>
+                                <td  class="cart_price">
+                                    <p id="price">@catitem.item.SellPrice € </p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
+                                        <a class="cart_quantity_up" href=""> + </a>
+                                        <input id="quantity" class="cart_quantity_input" type="text" name="quantity" value=@catitem.Q autocomplete="off" size="2">
+                                        <a class="cart_quantity_down" href=""> - </a>
+                                    </div>
+                                </td>
+                                <td class="cart_total">
+                                    <p id="total" class="cart_total_price"> @(catitem.item.SellPrice * catitem.Q) € </p>
+                                </td>
+                                <td class="cart_delete">
+                                    <a class="cart_quantity_delete" asp-controller="Cart" asp-action="Remove" asp-route-id="@catitem.item.ID"><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>
+                                @ViewBag.total €
                             </td>
                         </tr>
                     }
-                    <tr>
-                        <td>
-                            @ViewBag.total
-                        </td>
-                    </tr>
                 </tbody>
             </table>
             <br />

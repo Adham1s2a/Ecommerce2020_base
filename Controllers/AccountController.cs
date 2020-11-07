@@ -56,7 +56,10 @@ namespace Ecommerce.Controllers
                     Email = model.Email,
                     City = model.City,
                     PhoneNumber = model.phoneNumber,
-                    ZipCode = model.ZipCode
+                    ZipCode = model.ZipCode,
+                    FirstName=model.FirstName,
+                    LastName=model.LastName,
+                    Address=model.Address
 
 
 

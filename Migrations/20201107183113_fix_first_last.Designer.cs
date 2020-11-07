@@ -4,14 +4,16 @@ using Ecommerce.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Ecommerce.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201107183113_fix_first_last")]
+    partial class fix_first_last
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,9 +113,6 @@ namespace Ecommerce.Migrations
 
                     b.Property<DateTime>("ActionOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Background")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CategoryName")
                         .IsRequired()

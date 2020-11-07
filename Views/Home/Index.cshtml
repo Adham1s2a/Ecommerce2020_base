@@ -25,7 +25,7 @@
             @foreach (var category in Model.CategoryList)
             {
                 var photopath = "~/Images/" + (category.Photopath ?? "noimage.jpg");
-
+          
                 <div class="swiper-slide">
                     <a asp-controller="home" asp-action="InstaStory" asp-route-id="@category.ID">
                         <img src="@photopath" style="width: 250px;height: 250px;border-radius: 50%;border: groove;border-color: dodgerblue" asp-append-version="true" />

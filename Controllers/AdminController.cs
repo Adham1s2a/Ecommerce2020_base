@@ -71,6 +71,7 @@ namespace Ecommerce.Controllers
             {
 
                 string UniqueFile = Processuploadfile(model);
+                string UniqueFileBG = ProcessuploadfileBG(model);
                 Category category = new Category()
                 {
                     CategoryName = model.CategoryName,
@@ -81,7 +82,7 @@ namespace Ecommerce.Controllers
                     ActionBy = 1,
                     ActionOn = DateTime.Now,
                     Photopath = UniqueFile,
-                    //Background = UniqueFile
+                    Background = UniqueFileBG
 
 
                 };
@@ -108,7 +109,7 @@ namespace Ecommerce.Controllers
                 OfferPersent = Convert.ToInt32(category.OfferPersent),
                 OfferStatus  = category.OfferStatus, 
                 excistingphotopath = category.Photopath,
-                ///*excistingBackground*/=category.Background
+                excistingBackground =category.Background
             };
 
             return View(model);
@@ -127,10 +128,10 @@ namespace Ecommerce.Controllers
                 {
                     category.Photopath = Processuploadfile(model);
                 }
-                //if (model.BG != null)
-                //{
-                //    category.Photopath = Processuploadfile(model);
-                //}
+                if (model.BG != null)
+                {
+                    category.Photopath = ProcessuploadfileBG(model);
+                }
 
                 categoryRepositoy.UpdateCategory(category);
                 return RedirectToAction("details", new { id = category.ID });
@@ -295,6 +296,29 @@ namespace Ecommerce.Controllers
             }
 
             return UniqueFile;
+        }
+        private string ProcessuploadfileBG(CreateCategoryViewModel model)
+        {
+            // If the Photo property on the incoming model object is not null, then the user
+            // has selected an image to upload.
+            string UniqueFileBG = null;
+            if (model.BG != null)
+            {
+
+                // The image must be uploaded to the images folder in wwwroot
+                // To get the path of the wwwroot folder we are using the inject
+                // HostingEnvironment service provided by ASP.NET Core
+                string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                // To make sure the file name is unique we are appending a new
+                // GUID value and and an underscore to the file name
+                UniqueFileBG = Guid.NewGuid().ToString() + "_" + model.BG.FileName;
+                // Use CopyTo() method provided by IFormFile interface to
+                // copy the file to wwwroot/images folder
+                string Filepath = Path.Combine(UploadsFolder, UniqueFileBG);
+                model.Photo.CopyTo(new FileStream(Filepath, FileMode.Create));
+            }
+
+            return UniqueFileBG;
         }
         private string Processuploadfile(CreateitemViewModel model)
         {

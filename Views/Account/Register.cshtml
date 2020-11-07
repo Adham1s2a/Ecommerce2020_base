@@ -5,7 +5,7 @@
 
 }
 
-<div class="intro-section" >
+<div class="intro-section">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-md-7 mx-auto text-center" data-aos="fade-up">
@@ -35,6 +35,20 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 form-group">
+                            <label asp-for="FirstName"></label>
+                            <input asp-for="FirstName" class="form-control">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label asp-for="LastName"></label>
+                            <input asp-for="LastName" class="form-control">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
                             <label asp-for="Email"></label>
                             <input asp-for="Email" class="form-control">
                             <span asp-validation-for="Email" class="text-danger"></span>
@@ -56,6 +70,15 @@
                             <span asp-validation-for="passwordConfirmation" class="text-danger"></span>
                         </div>
                     </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label asp-for="phoneNumber"></label>
+                            <input asp-for="phoneNumber" class="form-control">
+
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <label asp-for="City"></label>
@@ -65,8 +88,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 form-group">
-                            <label asp-for="phoneNumber"></label>
-                            <input asp-for="phoneNumber" class="form-control">
+                            <label asp-for="Address"></label>
+                            <input asp-for="Address" class="form-control">
 
                         </div>
                     </div>

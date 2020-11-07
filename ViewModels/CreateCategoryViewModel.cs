@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,8 +16,8 @@ namespace Ecommerce.ViewModels
         public bool IsDeleted { get; set; }
         public int ActionBy { get; set; }
         public DateTime ActionOn { get; set; }
-
         public IFormFile Photo { get; set; }
+        [Display(Name ="Background")]
         public IFormFile BG { get; set; }
     }
 }

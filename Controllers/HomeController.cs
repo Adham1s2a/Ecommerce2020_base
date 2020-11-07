@@ -67,6 +67,7 @@ namespace Ecommerce.Controllers
         public IActionResult CategoryItems(int id, int? page)
         {
             ViewBag.Categories = icategory.GetAllCategories();
+            ViewBag.cat = icategory.GetCategory(id);
             //CategoryItemsViewmodel categoryItemsViewmodel = new CategoryItemsViewmodel()
             //{       
             //    items = iitem.GetCategoryItems(id)
