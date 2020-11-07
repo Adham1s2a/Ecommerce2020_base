@@ -15,7 +15,7 @@
 <link href="~/css/swiper-bundle.min.css" rel="stylesheet" />
 @*<script src="~/js/multilangauge - Categoryitems.js"></script>*@
 
-<div style="
+@*<div style="
      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
      font-size: 14px;
      color: #000;
@@ -26,7 +26,7 @@
      min-height:50vh;
      background:#111;">
 
-    <!-- Swiper -->
+     Swiper 
     <div class="swiper-container">
         <div class="swiper-wrapper">
 
@@ -36,21 +36,21 @@
 
                 <div class="swiper-slide"> <a asp-controller="home" asp-action="ItemDetails"><img src="@photopath" style="width:250px;height:250px" asp-append-version="true" /></a></div>
 
-            }<!--1------------------------------>
+            }1----------------------------
 
 
         </div>
-        <!-- Add Pagination -->
+         Add Pagination 
         <div class="swiper-pagination"></div>
     </div>
 
-    <!-- Swiper JS -->
+     Swiper JS 
     <script src="../package/swiper-bundle.min.js"></script>
 
-    <!-- Initialize Swiper -->
-</div>
+     Initialize Swiper 
+</div>*@
 
-<style>
+@*<style>
 
     .swiper-container {
         width: 100%;
@@ -66,10 +66,10 @@
         background: #000;
         -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0006);
     }
-</style>
+</style>*@
 <script src="~/js/swiper-bundle.min.js"></script>
 @section Scripts {
-    <script>
+    @*<script>
         var swiper = new Swiper('.swiper-container', {
             effect: 'coverflow',
             grabCursor: true,
@@ -91,8 +91,12 @@
                 el: '.swiper-pagination',
             },
         });
-    </script>
+    </script>*@
 }
+
+<div style="background-image: url(/Images/@ViewBag.cat.Background );width: 400px;height: 400px;" >
+
+</div>
 <div id="wrapper">
     <div class="overlay"></div>
 
@@ -176,10 +180,10 @@
                 </div>*@
             </div>
 
-            <div>
+            @*<div>
                 @ViewBag.cat.Background;
 
-            </div>
+            </div>*@
             <div class="col-sm-9 padding-right">
                 <div class="features_items">
                     <!--features_items-->
