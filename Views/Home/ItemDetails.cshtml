@@ -16,13 +16,20 @@
             <div class="carousel-inner">
                 <div class="item active">
 
-                    <img src=@("/Images/"+ Model.Photopath) alt="Image" style="width:100%;">
+                    @{ 
+                        var photopath = "/Images/" + (Model.Photopath ?? "noimage.jpg");
+                        var photopath1 = "/Images/" + (Model.Photopath1 ?? "noimage.jpg");
+                        var photopath2= "/Images/" + (Model.Photopath2 ?? "noimage.jpg");
+
+                    }
+
+                    <img src=@photopath alt="Image" style="width:100%;">
                 </div>
                 <div class="item">
-                    <img src=@("/Images/"+ Model.Photopath) alt="Image" style="width:100%;">
+                    <img src=@photopath1 alt="Image" style="width:100%;">
                 </div>
                 <div class="item">
-                    <img src=@("/Images/"+ Model.Photopath) alt="Image" style="width:100%;">
+                    <img src=@photopath2 alt="Image" style="width:100%;">
                 </div>
 
 

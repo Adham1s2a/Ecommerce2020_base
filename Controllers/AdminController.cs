@@ -150,7 +150,9 @@ namespace Ecommerce.Controllers
                 ItemDesc=item.ItemDesc,
                 SellPrice=item.SellPrice,
                 Quantity=item.Quantity,
-                excistingphotopath = item.Photopath
+                excistingphotopath = item.Photopath,
+                excistingphotopath1=item.Photopath1,
+                excistingphotopath2=item.Photopath2
             };
 
             return View(model);
@@ -160,6 +162,7 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
+               string[] itemphotos = Processuploadfileitem(model);
                 Item item = itemRepository.GetItem(model.id);
                 item.ItemName = model.ItemName;
                 item.ItemDesc = model.ItemDesc;
@@ -167,7 +170,15 @@ namespace Ecommerce.Controllers
                 item.Quantity = model.Quantity;
                 if (model.Photo != null)
                 {
-                    item.Photopath = Processuploadfile(model);
+                    item.Photopath = itemphotos[0];
+                }
+                if (model.Photo1 != null)
+                {
+                    item.Photopath = itemphotos[1];
+                }
+                if (model.Photo2 != null)
+                {
+                    item.Photopath = itemphotos[2];
                 }
 
                 itemRepository.UpdateItem(item);
@@ -247,7 +258,8 @@ namespace Ecommerce.Controllers
             if (ModelState.IsValid)
             {
 
-                string UniqueFile = Processuploadfile(model);
+                string[] itemphotos = Processuploadfileitem(model);
+
                 Item item = new Item()
                 {
                     ItemName = model.ItemName,
@@ -258,7 +270,9 @@ namespace Ecommerce.Controllers
                     IsDeleted = false,
                     ActionBy = 1,
                     ActionOn = DateTime.Now,
-                    Photopath = UniqueFile
+                    Photopath = itemphotos[0],
+                    Photopath1= itemphotos[1],
+                    Photopath2= itemphotos[2]
 
 
                 };
@@ -304,7 +318,6 @@ namespace Ecommerce.Controllers
             string UniqueFileBG = null;
             if (model.BG != null)
             {
-
                 // The image must be uploaded to the images folder in wwwroot
                 // To get the path of the wwwroot folder we are using the inject
                 // HostingEnvironment service provided by ASP.NET Core
@@ -320,14 +333,15 @@ namespace Ecommerce.Controllers
 
             return UniqueFileBG;
         }
-        private string Processuploadfile(CreateitemViewModel model)
+        private string[] Processuploadfileitem(CreateitemViewModel model)
         {
             // If the Photo property on the incoming model object is not null, then the user
             // has selected an image to upload.
+            string[] itemphotos = new string[3];
             string UniqueFile = null;
+
             if (model.Photo != null)
             {
-
                 // The image must be uploaded to the images folder in wwwroot
                 // To get the path of the wwwroot folder we are using the inject
                 // HostingEnvironment service provided by ASP.NET Core
@@ -339,9 +353,42 @@ namespace Ecommerce.Controllers
                 // copy the file to wwwroot/images folder
                 string Filepath = Path.Combine(UploadsFolder, UniqueFile);
                 model.Photo.CopyTo(new FileStream(Filepath, FileMode.Create));
+                itemphotos[0] = UniqueFile;
+            }
+             UniqueFile = null;
+            if (model.Photo1 != null)
+            {
+                // The image must be uploaded to the images folder in wwwroot
+                // To get the path of the wwwroot folder we are using the inject
+                // HostingEnvironment service provided by ASP.NET Core
+                string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                // To make sure the file name is unique we are appending a new
+                // GUID value and and an underscore to the file name
+                UniqueFile = Guid.NewGuid().ToString() + "_" + model.Photo1.FileName;
+                // Use CopyTo() method provided by IFormFile interface to
+                // copy the file to wwwroot/images folder
+                string Filepath = Path.Combine(UploadsFolder, UniqueFile);
+                model.Photo1.CopyTo(new FileStream(Filepath, FileMode.Create));
+                itemphotos[1] = UniqueFile;
+            }
+            UniqueFile = null;
+            if (model.Photo2 != null)
+            {
+                // The image must be uploaded to the images folder in wwwroot
+                // To get the path of the wwwroot folder we are using the inject
+                // HostingEnvironment service provided by ASP.NET Core
+                string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                // To make sure the file name is unique we are appending a new
+                // GUID value and and an underscore to the file name
+                UniqueFile = Guid.NewGuid().ToString() + "_" + model.Photo2.FileName;
+                // Use CopyTo() method provided by IFormFile interface to
+                // copy the file to wwwroot/images folder
+                string Filepath = Path.Combine(UploadsFolder, UniqueFile);
+                model.Photo2.CopyTo(new FileStream(Filepath, FileMode.Create));
+                itemphotos[2] = UniqueFile;
             }
 
-            return UniqueFile;
+            return itemphotos;
         }
     }
 }

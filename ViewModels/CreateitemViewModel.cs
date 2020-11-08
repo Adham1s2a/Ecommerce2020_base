@@ -24,6 +24,8 @@ namespace Ecommerce.ViewModels
         public int ActionBy { get; set; }
         public DateTime ActionOn { get; set; }
         public IFormFile Photo { get; set; }
+        public IFormFile Photo1 { get; set; }
+        public IFormFile Photo2 { get; set; }
         public CategoriesNamesenum CategoryNames { get; set; }
 
     }

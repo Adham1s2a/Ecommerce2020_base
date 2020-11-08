@@ -23,5 +23,7 @@ namespace Ecommerce.Models
         public int  ActionBy { get; set; }
         public DateTime ActionOn { get; set; }
         public string Photopath { get; set; }
+        public string Photopath1 { get; set; }
+        public string Photopath2 { get; set; }
     }
 }
