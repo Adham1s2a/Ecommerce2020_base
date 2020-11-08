@@ -62,3 +62,7 @@ Ayham:
 
 adham : orders
 -----------------------------------------------------------------------------------
+9/11/2020
+
+adham : checkout and delete item
+ayham: itemdetails design and adminindex
