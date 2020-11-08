@@ -8,10 +8,14 @@
 
 @if (showBanner)
 {
-    <div id="cookieConsent">
-        <p>we use cookies</p>
+   
+    <div id="cookieConsent" class="ac-container" style="top:188.5px; left:189.5px; opacity:1;">
+        <h2>This website uses cookies</h2>
+        <p>
+            We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services
+        </p>
         <button type="button" data-dismiss="alert" data-cookie-string="@cookieString">
-            <span aria-hidden="true">Accept</span>
+            <span aria-hidden="true">Accept & Continue</span>
         </button>
     </div>
     <script>
