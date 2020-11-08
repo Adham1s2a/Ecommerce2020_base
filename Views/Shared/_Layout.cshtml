@@ -32,9 +32,12 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    
+   
 </head><!--/head-->
-
+<div> <partial name="_CookieConsentPartial" /></div>
 <body onload="setLanguage()">
+
     <header id="header">
         <!--header-->
         <div class="header_top">
@@ -58,7 +61,7 @@
                                 <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                 <li>
-                                    <img id="english"  src="~/img/united-kingdom.png" style="width: 20px;margin-top: 8px;margin-left: 10px;" />
+                                    <img id="english" src="~/img/united-kingdom.png" style="width: 20px;margin-top: 8px;margin-left: 10px;" />
                                 </li>
                                 <li>
                                     <img id="deutsch" src="~/img/germany.png" style="width: 20px;margin-top: 8px;margin-left: 10px;" />
@@ -140,11 +143,11 @@
                                 }
                                 <li><a id="contact" href="contact-us.html">Contact</a></li>
                                 @*<li>  <button id="english">En</button></li>
-                                <li>  <button id="deutsch">Deu</button></li>*@
+                                    <li>  <button id="deutsch">Deu</button></li>*@
                             </ul>
                         </div>
 
-                       
+
 
                     </div>
                 </div>
@@ -153,7 +156,7 @@
     </header><!--/header-->
 
     <div>
-         <partial name="_CookieConsentPartial" />
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -176,7 +179,7 @@
                     <div class="col-sm-3 col-sm-offset-8" style="margin-top: -100px;">
                         <div class="address">
                             <img src="~/images/home/map.png" alt="" />
-                            
+
                         </div>
                     </div>
                 </div>
@@ -237,15 +240,15 @@
             </div>
 
             @*<div class="footer-bottom">
-                <div class="container">
-                    <div class="row">
-                        <p class="pull-left">Copyright © 2020 KiddoKids Inc. All rights reserved.</p>
-                        <p class="pull-right">Designed by <span>Adyam</span></p>
+                    <div class="container">
+                        <div class="row">
+                            <p class="pull-left">Copyright © 2020 KiddoKids Inc. All rights reserved.</p>
+                            <p class="pull-right">Designed by <span>Adyam</span></p>
+                        </div>
                     </div>
-                </div>
-            </div>*@
-</div>
-        
+                </div>*@
+        </div>
+
     </footer><!--/Footer-->
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/jquery-validate/jquery.validate.js"></script>

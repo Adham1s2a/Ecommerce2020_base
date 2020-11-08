@@ -130,7 +130,7 @@ namespace Ecommerce.Controllers
                 }
                 if (model.BG != null)
                 {
-                    category.Photopath = ProcessuploadfileBG(model);
+                    category.Background = ProcessuploadfileBG(model);
                 }
 
                 categoryRepositoy.UpdateCategory(category);
@@ -203,7 +203,7 @@ namespace Ecommerce.Controllers
             var category = await _context.Categories.FindAsync(id);
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("AdminIndex" ,"admin");
         }
 
         private bool CategoryExists(int id)
@@ -315,7 +315,7 @@ namespace Ecommerce.Controllers
                 // Use CopyTo() method provided by IFormFile interface to
                 // copy the file to wwwroot/images folder
                 string Filepath = Path.Combine(UploadsFolder, UniqueFileBG);
-                model.Photo.CopyTo(new FileStream(Filepath, FileMode.Create));
+                model.BG.CopyTo(new FileStream(Filepath, FileMode.Create));
             }
 
             return UniqueFileBG;
