@@ -1,0 +1,69 @@
+﻿@model Ecommerce.Models.Item
+
+@{
+    ViewData["Title"] = "Delete item";
+}
+
+<h1>Delete item</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>item</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ItemDesc)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ItemDesc)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SellPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SellPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ActionBy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ActionBy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ActionOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ActionOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Photopath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Photopath)
+        </dd>
+    </dl>
+
+    <form asp-action="Deleteitem">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Deleteitem" class="btn btn-danger" /> |
+        <a asp-action="AdminIndex">Back to List</a>
+    </form>
+</div>

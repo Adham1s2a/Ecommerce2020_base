@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -27,7 +28,11 @@ namespace Ecommerce.Models
             Category category = context.Categories.Find(id);
             if (category != null)
             {
-                context.Remove(category);
+                (from cat in context.Categories
+                 where cat.ID == id
+                 select cat).ToList()
+                 .ForEach(x => x.IsDeleted = true);
+
                 context.SaveChanges();
             }
             return category;
@@ -36,7 +41,7 @@ namespace Ecommerce.Models
 
         public List<Category> GetAllCategories()
         {
-            return context.Categories.ToList();
+            return (from all in context.Categories where all.IsDeleted != true select all).ToList();
             throw new NotImplementedException();
         }
 

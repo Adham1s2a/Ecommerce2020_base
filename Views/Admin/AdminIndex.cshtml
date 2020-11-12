@@ -17,11 +17,11 @@
                 <div class="card-header">
                     @category.CategoryName
                 </div>
-                <a asp-controller="Admin" asp-action="CategoryItems" asp-route-id="@category.ID"><img class="card  card-img-top embed-responsive-item" style="margin-left :0px; height:200px" src="@photopath" asp-append-version="true" /></a>
+                <a asp-controller="Admin" asp-action="CategoryItemsAdmin" asp-route-id="@category.ID"><img class="card  card-img-top embed-responsive-item" style="margin-left :0px; height:200px" src="@photopath" asp-append-version="true" /></a>
                 <div class="card-footer text-center">
                     @*<a asp-controller="home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary m-1">view</a>*@
                     <a asp-controller="admin" asp-action="EditCategory" asp-route-id="@category.ID" class="btn btn-primary m-1">Edit</a>
-                    <a asp-controller="Admin" asp-action="Delete" asp-route-id="@category.ID" class="btn btn-danger m-1">Delete</a>
+                    <a asp-controller="Admin" asp-action="Deletecat" asp-route-id="@category.ID" class="btn btn-danger m-1">Delete</a>
                 </div>
             </div>
         }

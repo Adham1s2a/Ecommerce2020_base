@@ -12,6 +12,7 @@ namespace Ecommerce.Models
         List<Item> GetCategoryItems(int categoryID);
         Item AddItem(Item item);
         Item UpdateItem(Item Itemchange);
-        Item Delete(int id);
+        Item Delete(int id);        
+        int getcatID(int id);
     }
 }

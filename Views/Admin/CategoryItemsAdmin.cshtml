@@ -1,0 +1,60 @@
+﻿
+@using X.PagedList.Mvc.Core;@*import to get HTML Helper*@
+@using X.PagedList;
+
+
+@model IEnumerable<Ecommerce.Models.Item>
+
+@{ViewBag.Title = "CategoryItems_Admin";
+
+}
+
+
+<div class="container">
+    <div class="row">
+
+
+        <a asp-controller="admin" asp-action="CreateItem" asp-route-id="@ViewBag.ID" class="btn btn-primary m-1">Create item</a>
+        <h2 class="title text-center">Items:</h2>
+        <div class="col-sm-offset padding-right">
+            <div class="features_items">
+
+
+                @foreach (var item in Model)
+                {
+                    var photopath = "~/Images/" + (item.Photopath ?? "noimage.jpg");
+
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <div class="card-header">
+                                        @item.ItemName
+                                    </div>
+                                    <img src="@photopath" asp-append-version="true" />
+                                    <div class="card-footer text-center">
+                                        @*<a asp-controller="home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary m-1">view</a>*@
+                                        <a asp-controller="Admin" asp-action="EditItem" asp-route-id="@item.ID" class="btn btn-primary m-1">Edit</a>
+                                        <a asp-controller="Admin" asp-action="DeleteItem" asp-route-id="@item.ID" class="btn btn-danger m-1">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("CategoryItemsAdmin", new { page = page }),
+                            new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+                            {
+                                DisplayItemSliceAndTotal = true,
+                                ContainerDivClasses = new[] { "navigation" },
+                                LiElementClasses = new[] { "page-item" },
+                                PageClasses = new[] { "page-link" },
+                            })
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

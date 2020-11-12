@@ -10,6 +10,7 @@ using Ecommerce.ViewModels;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
+using X.PagedList;
 
 namespace Ecommerce.Controllers
 {
@@ -33,7 +34,7 @@ namespace Ecommerce.Controllers
         // GET: Admin
         public async Task<IActionResult> AdminIndex()
         {
-            return View(await _context.Categories.ToListAsync());
+            return View( categoryRepositoy.GetAllCategories());
         }
 
         // GET: Admin/Details/5
@@ -181,15 +182,16 @@ namespace Ecommerce.Controllers
                     item.Photopath = itemphotos[2];
                 }
 
+                int catid = itemRepository.getcatID(item.ID);
+
                 itemRepository.UpdateItem(item);
-                return RedirectToAction("CategoryItems", new { id = item.ID });
+                return RedirectToAction("CategoryItems", new { id = catid });
             }
             return View();
-        }
-        
+        }       
 
         // GET: Admin/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Deletecat(int? id)
         {
             if (id == null)
             {
@@ -207,14 +209,40 @@ namespace Ecommerce.Controllers
         }
 
         // POST: Admin/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Deletecat")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmedcat(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            _context.Categories.Remove(category);
+            categoryRepositoy.Delete(id);
             await _context.SaveChangesAsync();
             return RedirectToAction("AdminIndex" ,"admin");
+        }
+
+
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            
+            var item = await _context.Items
+                .FirstOrDefaultAsync(m => m.ID == id);
+            
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            itemRepository.Delete(id);
+
+            return View(item);
+        }
+
+        // POST: Admin/Delete/5
+        [HttpPost, ActionName("Deleteitem")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmeditem(int id)
+        {
+            itemRepository.Delete(id);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("AdminIndex", "admin");
         }
 
         private bool CategoryExists(int id)
@@ -224,10 +252,10 @@ namespace Ecommerce.Controllers
 
 
 
-        public IActionResult CategoryItems(int id)
+        public IActionResult CategoryItemsAdmin(int id, int? page)
         {
 
-            List<Item>  items = itemRepository.GetCategoryItems(id);
+            
             ViewBag.ID = id;
             //Category cat = (from i in _context.Categories where i.ID == categoryID select i).First();
             //if (items == null)
@@ -236,8 +264,11 @@ namespace Ecommerce.Controllers
             //    return View("Error404", ViewBag.id);
             //}
 
-            
-            return View(items);
+            var pageNumber = page ?? 1; // if no page is specified, default to the first page (1)
+            int pageSize = 6; // Get 12 Items for each requested page.
+            var onePageOfItems = itemRepository.GetCategoryItems(id).ToPagedList(pageNumber, pageSize);
+            return View(onePageOfItems); // Send 12 Items to the page.
+           
 
         }
 
