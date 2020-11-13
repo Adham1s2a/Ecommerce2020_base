@@ -1,5 +1,6 @@
 ﻿let english = document.getElementById("english");
 let deutsch = document.getElementById("deutsch");
+let france = document.getElementById("france");
 let title = document.getElementById("home");
 let contact = document.getElementById("contact");
 let login = document.getElementById("login");
@@ -31,6 +32,13 @@ deutsch.onclick = () => {
 
     setLanguage("deutsch");
     localStorage.setItem("lang", "deutsch");
+
+};
+
+france.onclick = () => {
+
+    setLanguage("france");
+    localStorage.setItem("lang", "france");
 
 };
 
@@ -206,5 +214,57 @@ function setLanguage(getlanguage) {
 
 
     }
+    else if (getlanguage === "france") {
+        {
+            if (title !== null) {
+                title.innerHTML = "Home";
+            }
+            if (contact !== null) {
+                contact.innerHTML = "Contact";
+            }
+            if (login !== null) {
+                login.innerHTML = "Enregistrement";
+            }
+            if (register !== null) {
+                register.innerHTML = "Enregistrer";
+            }
 
+            if (account !== null) {
+                account.innerHTML = "Compte";
+            }
+            if (features_items !== null) {
+                features_items.innerHTML = "Top article";
+            }
+            if (category !== null) {
+                category.innerHTML = "Catégorie";
+            }
+            if (recommended !== null) {
+                recommended.innerHTML = "Articles recommandés";
+            }
+            if (checkout !== null) {
+                checkout.innerHTML = "Vérifier";
+            }
+            if (cart !== null) {
+                cart.innerHTML = "Oser";
+            }
+            if (logout !== null) {
+                logout.innerHTML = "Se déconnecter";
+            }
+            if (productdetail !== null) {
+                productdetail.innerHTML = "Détails du produit";
+            }
+            if (productname !== null) {
+                productname.innerHTML = "Nom du produit";
+            }
+            if (productprice !== null) {
+                productprice.innerHTML = "Prix ​​du produit";
+            }
+            if (productdesc !== null) {
+                productdesc.innerHTML = "Description du produit";
+            }
+
+        }
+
+
+    }
 }

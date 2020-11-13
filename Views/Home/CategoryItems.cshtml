@@ -40,7 +40,7 @@
 
 
             </div>
-             Add Pagination
+             Add pagination
             <div class="swiper-pagination"></div>
         </div>
 
@@ -93,9 +93,10 @@
             });
         </script>*@
 }
+<div class="row">
 
-<div style="background-image: url(/Images/@ViewBag.cat.Background );width: 400px;height: 400px;">
-
+    <img src="~/images/@ViewBag.cat.Background" />
+    @*@ViewBag.cat.Background*@
 </div>
 <div id="wrapper">
     <div class="overlay"></div>
@@ -200,41 +201,31 @@
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <img src="@photopath" asp-append-version="true" alt="" />
-                                        <h2>@item.SellPrice</h2>
+                                        <h2>@item.ItemName</h2>
                                         <p>@item.SellPrice</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>@item.SellPrice</h2>
-                                            <p>@item.SellPrice</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                         </div>
 
                     }
                 </div>
             </div>
-            <div class="col-sm-9 padding-right">
+            <div class="row">
                 @Html.PagedListPager((IPagedList)Model, page => Url.Action("CategoryItems", new { page = page }),
                             new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
                             {
-                                DisplayItemSliceAndTotal = true,
+                                DisplayItemSliceAndTotal = false,
                                 ContainerDivClasses = new[] { "navigation" },
                                 LiElementClasses = new[] { "page-item" },
                                 PageClasses = new[] { "page-link" },
                             })
-        </div>
+            </div>
 
+        </div>
     </div>
 </section>
 <script>

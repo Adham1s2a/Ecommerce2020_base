@@ -7,23 +7,31 @@
     <div>
         <h2>Categories:</h2>
     </div>
-    <div class="card-deck">
+    <div class="col-sm-9 padding-right">
+        <div class="features_items">
 
-        @foreach (var category in Model)
-        {
-            var photopath = "~/Images/" + (category.Photopath ?? "noimage.jpg");
+            @foreach (var category in Model)
+            {
+                var photopath = "~/Images/" + (category.Photopath ?? "noimage.jpg");
 
-            <div class="card m-lg-4" @*style="min-width:18rem;max-width:30.5%"*@>
-                <div class="card-header">
-                    @category.CategoryName
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <div class="card-header">
+                                    @category.CategoryName
+                                </div>
+                                <a asp-controller="Admin" asp-action="CategoryItemsAdmin" asp-route-id="@category.ID"><img src="@photopath" asp-append-version="true" /></a>
+                                <div class="card-footer text-center">
+                                    @*<a asp-controller="home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary m-1">view</a>*@
+                                    <a asp-controller="admin" asp-action="EditCategory" asp-route-id="@category.ID" class="btn btn-primary m-1">Edit</a>
+                                    <a asp-controller="Admin" asp-action="Deletecat" asp-route-id="@category.ID" class="btn btn-danger m-1">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <a asp-controller="Admin" asp-action="CategoryItemsAdmin" asp-route-id="@category.ID"><img class="card  card-img-top embed-responsive-item" style="margin-left :0px; height:200px" src="@photopath" asp-append-version="true" /></a>
-                <div class="card-footer text-center">
-                    @*<a asp-controller="home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary m-1">view</a>*@
-                    <a asp-controller="admin" asp-action="EditCategory" asp-route-id="@category.ID" class="btn btn-primary m-1">Edit</a>
-                    <a asp-controller="Admin" asp-action="Deletecat" asp-route-id="@category.ID" class="btn btn-danger m-1">Delete</a>
-                </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 </div>
