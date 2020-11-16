@@ -16,86 +16,87 @@
 @*<script src="~/js/multilangauge - Categoryitems.js"></script>*@
 
 @*<div style="
-     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-     font-size: 14px;
-     color: #000;
-     margin-bottom:15px;
-     display:flex;
-     justify-content:center;
-     align-items:center;
-     min-height:50vh;
-     background:#111;">
+         font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+         font-size: 14px;
+         color: #000;
+         margin-bottom:15px;
+         display:flex;
+         justify-content:center;
+         align-items:center;
+         min-height:50vh;
+         background:#111;">
 
-     Swiper 
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
+         Swiper
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
 
-            @foreach (var item in Model)
-            {
-                var photopath = "~/Images/" + (item.Photopath ?? "noimage.jpg");
+                @foreach (var item in Model)
+                {
+                    var photopath = "~/Images/" + (item.Photopath ?? "noimage.jpg");
 
-                <div class="swiper-slide"> <a asp-controller="home" asp-action="ItemDetails"><img src="@photopath" style="width:250px;height:250px" asp-append-version="true" /></a></div>
+                    <div class="swiper-slide"> <a asp-controller="home" asp-action="ItemDetails"><img src="@photopath" style="width:250px;height:250px" asp-append-version="true" /></a></div>
 
-            }1----------------------------
+                }1----------------------------
 
 
+            </div>
+             Add pagination
+            <div class="swiper-pagination"></div>
         </div>
-         Add Pagination 
-        <div class="swiper-pagination"></div>
-    </div>
 
-     Swiper JS 
-    <script src="../package/swiper-bundle.min.js"></script>
+         Swiper JS
+        <script src="../package/swiper-bundle.min.js"></script>
 
-     Initialize Swiper 
-</div>*@
+         Initialize Swiper
+    </div>*@
 
 @*<style>
 
-    .swiper-container {
-        width: 100%;
-        padding-top: 50px;
-        padding-bottom: 100px;
-    }
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 100px;
+        }
 
-    .swiper-slide {
-        background-position: center;
-        background-size: cover;
-        width: 250px;
-        height: 250px;
-        background: #000;
-        -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0006);
-    }
-</style>*@
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 250px;
+            height: 250px;
+            background: #000;
+            -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0006);
+        }
+    </style>*@
 <script src="~/js/swiper-bundle.min.js"></script>
 @section Scripts {
     @*<script>
-        var swiper = new Swiper('.swiper-container', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: 'auto',
-            coverflowEffect: {
-                rotate: 20,
-                stretch: 0,
-                depth: 200,
-                modifier: 1,
-                slideShadows: true,
-            },
-            loop: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-            },
-        });
-    </script>*@
+            var swiper = new Swiper('.swiper-container', {
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                coverflowEffect: {
+                    rotate: 20,
+                    stretch: 0,
+                    depth: 200,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                loop: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+            });
+        </script>*@
 }
+<div class="row">
 
-<div style="background-image: url(/Images/@ViewBag.cat.Background );width: 400px;height: 400px;" >
-
+    <img src="~/images/@ViewBag.cat.Background" />
+    @*@ViewBag.cat.Background*@
 </div>
 <div id="wrapper">
     <div class="overlay"></div>
@@ -159,44 +160,37 @@
         <div class="row">
             <div class="col-sm-3">
                 @*<div class="left-sidebar">
-                    <h2>Category</h2>
-                    <div class="panel-group category-products" id="accordian">
-                        <div class="panel panel-default">
-                            @foreach (var cat in ViewBag.Categories)
-                            {
+                        <h2>Category</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <div class="panel panel-default">
+                                @foreach (var cat in ViewBag.Categories)
+                                {
 
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a asp-controller="home" asp-action="CategoryItems" asp-route-id="@cat.ID">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                            @cat.CategoryName
-                                        </a>
-                                    </h4>
-                                </div>
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a asp-controller="home" asp-action="CategoryItems" asp-route-id="@cat.ID">
+                                                <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                                @cat.CategoryName
+                                            </a>
+                                        </h4>
+                                    </div>
 
-                            }
+                                }
+                            </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
             </div>
 
             @*<div>
-                @ViewBag.cat.Background;
+                    @ViewBag.cat.Background;
 
-            </div>*@
+                </div>*@
             <div class="col-sm-9 padding-right">
                 <div class="features_items">
                     <!--features_items-->
                     <h2 id="features items" class="title text-center">Features Items</h2>
                     <!-- paging control for navigation to the previous page, next page, etc -->
-                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("CategoryItems", new { page = page }),
-                        new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
-                        {
-                            DisplayItemSliceAndTotal = true,
-                            ContainerDivClasses = new[] { "navigation" },
-                            LiElementClasses = new[] { "page-item" },
-                            PageClasses = new[] { "page-link" },
-                        })
+
                     @foreach (var item in Model)
                     {
                         var photopath = "~/Images/" + (item.Photopath ?? "noimage.jpg");
@@ -207,32 +201,31 @@
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <img src="@photopath" asp-append-version="true" alt="" />
-                                        <h2>@item.SellPrice</h2>
+                                        <h2>@item.ItemName</h2>
                                         <p>@item.SellPrice</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>@item.SellPrice</h2>
-                                            <p>@item.SellPrice</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                         </div>
 
                     }
                 </div>
             </div>
-        </div>
+            <div class="row">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("CategoryItems", new { page = page }),
+                            new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+                            {
+                                DisplayItemSliceAndTotal = false,
+                                ContainerDivClasses = new[] { "navigation" },
+                                LiElementClasses = new[] { "page-item" },
+                                PageClasses = new[] { "page-link" },
+                            })
+            </div>
 
+        </div>
     </div>
 </section>
 <script>
@@ -265,13 +258,13 @@
         });
     });</script>
 @*<script>
-    var sPath = window.location.pathname.split('/');
-    var secondLevelLocation = "/"+sPath[1]+"/"+sPath[2];
-    //var newPathname = "";
-    //for (i = 0; i < sPath.length-1; i++) {
-        
-    //    newPathname += sPath[i];
-    //    newPathname += "/";
-    //}
-    alert(secondLevelLocation);
-</script>*@
+        var sPath = window.location.pathname.split('/');
+        var secondLevelLocation = "/"+sPath[1]+"/"+sPath[2];
+        //var newPathname = "";
+        //for (i = 0; i < sPath.length-1; i++) {
+
+        //    newPathname += sPath[i];
+        //    newPathname += "/";
+        //}
+        alert(secondLevelLocation);
+    </script>*@

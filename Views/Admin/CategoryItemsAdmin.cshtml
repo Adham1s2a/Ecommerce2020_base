@@ -31,7 +31,9 @@
                                     <div class="card-header">
                                         @item.ItemName
                                     </div>
-                                    <img src="@photopath" asp-append-version="true" />
+                                    <a asp-controller="home" asp-action="ItemDetails" asp-route-id="@item.ID">
+                                        <img src="@photopath" asp-append-version="true" />
+                                    </a>
                                     <div class="card-footer text-center">
                                         @*<a asp-controller="home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary m-1">view</a>*@
                                         <a asp-controller="Admin" asp-action="EditItem" asp-route-id="@item.ID" class="btn btn-primary m-1">Edit</a>

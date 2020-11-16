@@ -9,18 +9,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home | E-Shopper</title>
-    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="~/css/font-awesome.min.css" rel="stylesheet">
     <link href="~/css/prettyPhoto.css" rel="stylesheet">
     <link href="~/css/price-range.css" rel="stylesheet">
     <link href="~/css/animate.css" rel="stylesheet">
     <link href="~/css/main.css" rel="stylesheet">
     <link href="~/css/responsive.css" rel="stylesheet">
+    <link href="~/css/img-gallery.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="~/css/cookiescheck.css" rel="stylesheet" />
     <link href="~/css/sidebartest.css" rel="stylesheet" />
     <link href="~/css/swiper-bundle.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!--[if lt IE 9]>
@@ -32,8 +34,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-    
-   
+
+
 </head><!--/head-->
 <div> <partial name="_CookieConsentPartial" /></div>
 <body onload="setLanguage()">
@@ -67,7 +69,7 @@
                                     <img id="deutsch" src="~/img/germany.png" style="width: 20px;margin-top: 8px;margin-left: 10px;" />
                                 </li>
                                 <li>
-                                    <img id="France" src="~/img/france.png" style="width: 20px;margin-top: 8px;margin-left: 10px;" />
+                                    <img id="france" src="~/img/france.png" style="width: 20px;margin-top: 8px;margin-left: 10px;" />
                                 </li>
                             </ul>
                         </div>
@@ -93,14 +95,25 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><i class="fa fa-user"> <a id="account" asp-controller="Account" asp-action="Profile">Account</a></i></li>
-                                @*<li><a ><i class="fa fa-star"></i> Wishlist</a></li>*@
-                                <li><i class="fa fa-crosshairs"><a id="checkout" href="checkout.html"> Checkout</a></i></li>
-                                <li><i class="fa fa-shopping-cart"><a asp-controller="Cart" asp-action="CartItems"> Cart</a></i></li>
                                 @if (SignInManager.IsSignedIn(User))
                                 {
                                     <li>
-                                        <i class="fa fa-sign-out"><a asp-controller="Account" asp-action="Logout"> Logout @User.Identity.Name</a></i>
+                                        <i class="fa fa-user"> <a  asp-controller="Account" asp-action="Profile">@User.Identity.Name</a></i>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li><i class="fa fa-user"> <a id="account" asp-controller="Account" asp-action="Profile">Account</a></i></li>
+
+                                }
+
+                                @*<li><a ><i class="fa fa-star"></i> Wishlist</a></li>*@
+                                <li><i class="fa fa-crosshairs"><a id="checkout" href="checkout.html"> Checkout</a></i></li>
+                                <li><i class="fa fa-shopping-cart"><a id="cart" asp-controller="Cart" asp-action="CartItems"> Cart</a></i></li>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li>
+                                        <i class="fa fa-sign-out"><a id="logout" asp-controller="Account" asp-action="Logout"> Logout </a></i>
                                     </li>
                                 }
                                 else

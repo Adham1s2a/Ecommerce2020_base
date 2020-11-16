@@ -1158,10 +1158,11 @@ h2.title {
 }
 
 .pagination {
-  display: inline-block;
-  margin-bottom: 25px;
-  margin-top: 0;
-  padding-left: 15px;
+	display: inline-block;
+	margin-bottom: 25px;
+	margin-top: 0;
+	padding-left: 15px;
+	margin-left: 500px;
 }
 
 .pagination  li:first-child  a, .pagination  li:first-child  span {
