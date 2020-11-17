@@ -17,6 +17,7 @@ namespace Ecommerce.Models
 
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Offer> Offers { get; set; }
 
     }
 }

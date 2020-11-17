@@ -186,6 +186,24 @@ namespace Ecommerce.Migrations
                     b.ToTable("Items");
                 });
 
+            modelBuilder.Entity("Ecommerce.Models.Offer", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("OfferCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OfferPercentt")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Offers");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

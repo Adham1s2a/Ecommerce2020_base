@@ -44,7 +44,10 @@
                         </div>
                     </div>
                 }
-                @Html.PagedListPager((IPagedList)Model, page => Url.Action("CategoryItemsAdmin", new { page = page }),
+
+
+            </div>
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("CategoryItemsAdmin", new { page = page }),
                             new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
                             {
                                 DisplayItemSliceAndTotal = true,
@@ -52,8 +55,6 @@
                                 LiElementClasses = new[] { "page-item" },
                                 PageClasses = new[] { "page-link" },
                             })
-
-            </div>
 
         </div>
     </div>

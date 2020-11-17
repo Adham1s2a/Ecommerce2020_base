@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(ViewBag.datafound == 0)
+                    @if (ViewBag.datafound == 0)
                     {
 
                         <tr>
@@ -43,13 +43,13 @@
 
                             <tr>
                                 <td class="cart_product" style="width: 100px;">
-                                    <img src="@photopath" style="width: 100px;"alt="">
+                                    <img src="@photopath" style="width: 100px;" alt="">
                                 </td>
                                 <td class="cart_description">
                                     <h4><a href="">@catitem.item.ItemName</a></h4>
 
                                 </td>
-                                <td  class="cart_price">
+                                <td class="cart_price">
                                     <p id="price">@catitem.item.SellPrice € </p>
                                 </td>
                                 <td class="cart_quantity">
@@ -77,6 +77,7 @@
             </table>
             <br />
             <a asp-controller="home" asp-action="index"> Continue Shopping</a>
+            <a asp-controller="checkout" asp-action="checkout">Checkout</a>
         </div>
     </div>
 </section> <!--/#cart_items-->

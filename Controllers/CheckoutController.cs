@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Models;
 using Ecommerce.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,16 @@ using System.Threading.Tasks;
 namespace Ecommerce.Controllers
 {
     public class CheckoutController :Controller
+         
     {
+        private readonly AppDbContext _context;
+        public CheckoutController(AppDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult checkout()
         {
+           
             ViewBag.datafound = 0;
             if (HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart") == null)
             {
@@ -28,6 +36,22 @@ namespace Ecommerce.Controllers
                 ViewBag.cart = cart;
                 ViewBag.total = cart.Sum(X => X.item.SellPrice * X.Q);
                 return View();
+            }
+
+        }
+        [AcceptVerbs("Get", "Post")]
+        [AllowAnonymous]
+        public async Task<IActionResult> IsValidOfferCode(string Code)
+        {
+            var code = _context.Offers.FindAsync(Code);
+
+            if (code != null)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"Offer Code {Code} is not valid");
             }
 
         }

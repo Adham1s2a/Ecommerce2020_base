@@ -200,14 +200,16 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="@photopath" asp-append-version="true" alt="" />
+                                        <a asp-controller="home" asp-action="ItemDetails" asp-route-id="@item.ID">
+                                            <img src="@photopath" asp-append-version="true" alt="" />
+                                        </a>
                                         <h2>@item.ItemName</h2>
                                         <p>@item.SellPrice</p>
                                         <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    
+
                                 </div>
-                                
+
                             </div>
                         </div>
 

@@ -66,3 +66,8 @@ adham : orders
 
 adham : checkout and delete item
 ayham: itemdetails design and adminindex
+-----------------------------------------------------------------------------------
+17 - 18/11/2020
+
+adham : offer,pagination home index
+ayham: videos, itemdetails, 

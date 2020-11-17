@@ -25,7 +25,7 @@
             @foreach (var category in Model.CategoryList)
             {
                 var photopath = "~/Images/" + (category.Photopath ?? "noimage.jpg");
-          
+
                 <div class="swiper-slide">
                     <a asp-controller="home" asp-action="InstaStory" asp-route-id="@category.ID">
                         <img src="@photopath" style="width: 250px;height: 250px;border-radius: 50%;border: groove;border-color: dodgerblue" asp-append-version="true" />
@@ -109,47 +109,47 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
         <ul class="nav sidebar-nav">
             <li class="sidebar-brand">
-                <a >
+                <a>
                     Menu
                 </a>
             </li>
             @*<li>
-                <div class="panel panel-default">
-                    @foreach (var category in Model.CategoryList)
-                    {
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a asp-controller="home" asp-action="CategoryItems" asp-route-id="@category.ID">
-                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                    @category.CategoryName
-                                </a>
-                            </h4>
-                        </div>
-                    }
-                </div>
-            </li>*@
+                    <div class="panel panel-default">
+                        @foreach (var category in Model.CategoryList)
+                        {
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a asp-controller="home" asp-action="CategoryItems" asp-route-id="@category.ID">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        @category.CategoryName
+                                    </a>
+                                </h4>
+                            </div>
+                        }
+                    </div>
+                </li>*@
             <li>
                 <a href="#">Home</a>
             </li>
 
             <li class="dropdown">
-            <a id="category" class="dropdown-toggle" data-toggle="dropdown">Category <span class="caret pull-right"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                   
-                    @foreach (var category in Model.CategoryList)
-                    {
-                       
-                        <a asp-controller="home" asp-action="CategoryItems" asp-route-id="@category.ID">
-                            @*<span class="badge pull-right"><i class="fa fa-plus"></i></span>*@
-                            @category.CategoryName
-                        </a>
-                       
-                    }
-                   
-                </li>
-            </ul>
-        </li>
+                <a id="category" class="dropdown-toggle" data-toggle="dropdown">Category <span class="caret pull-right"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+
+                        @foreach (var category in Model.CategoryList)
+                        {
+
+                            <a asp-controller="home" asp-action="CategoryItems" asp-route-id="@category.ID">
+                                @*<span class="badge pull-right"><i class="fa fa-plus"></i></span>*@
+                                @category.CategoryName
+                            </a>
+
+                        }
+
+                    </li>
+                </ul>
+            </li>
 
         </ul>
     </nav>
@@ -217,11 +217,11 @@
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <a asp-controller="home" asp-action="ItemDetails" asp-route-id="@item.ID">
-                                            <img  src="@photopath" asp-append-version="true" alt="" />
+                                            <img src="@photopath" asp-append-version="true" alt="" />
                                         </a>
                                         <h2>@item.ItemName</h2>
                                         <p>@item.SellPrice</p>
-                                        <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default "><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
                                     @*<div class="@*product-overlay">
                                             <div class="overlay-content">
@@ -543,10 +543,14 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="~/Beds/16.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Blue Bed</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                @*<img src="~/Beds/16.jpg" alt="" />
+                                                    <h2>$56</h2>
+                                                    <p>Blue Bed</p>
+                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>*@
+                                                <video controls="controls">
+                                                    <source src="~/videos/WhatsApp%20Video%202020-11-16%20at%2023.12.59.mp4" type="video/mp4" />
+                                                </video>
+      
                                             </div>
 
                                         </div>
@@ -636,8 +640,8 @@
         </div>
     </div>
     @*<div class="row">
-        <img src="~/img/babyshop-banner.jpg" alt="" />
-    </div>*@
+            <img src="~/img/babyshop-banner.jpg" alt="" />
+        </div>*@
 </section>
 <script>
     $(document).ready(function () {
