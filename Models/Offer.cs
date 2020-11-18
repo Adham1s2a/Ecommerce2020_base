@@ -12,7 +12,7 @@ namespace Ecommerce.Models
         public int ID { get; set; }
        
         [Display(Name = "Offer Code")]
-        [Remote(action: "IsValidOfferCode", controller: "Checkout")]
+        //[Remote(action: "IsValidOfferCode", controller: "Checkout")]
         public string OfferCode { get; set; }
         public int OfferPercentt { get; set; }
     }

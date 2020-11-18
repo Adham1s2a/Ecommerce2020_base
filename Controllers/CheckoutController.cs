@@ -41,9 +41,11 @@ namespace Ecommerce.Controllers
         }
         [AcceptVerbs("Get", "Post")]
         [AllowAnonymous]
-        public async Task<IActionResult> IsValidOfferCode(string Code)
+        public  IActionResult IsValidOfferCode(string OfferCode)
         {
-            var code = _context.Offers.FindAsync(Code);
+            var code =  _context.Offers
+               .FirstOrDefault(m => m.OfferCode == OfferCode);
+
 
             if (code != null)
             {
@@ -51,9 +53,33 @@ namespace Ecommerce.Controllers
             }
             else
             {
-                return Json($"Offer Code {Code} is not valid");
+                return Json($"Offer Code {OfferCode} is not valid");
             }
 
+        }
+
+
+        public IActionResult After_Checkout(string OfferCode)
+        {
+
+            var code = _context.Offers
+              .FirstOrDefault(m => m.OfferCode == OfferCode);
+
+            var cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart");
+           
+            double sum_ = cart.Sum(X => X.item.SellPrice * X.Q);
+            if (code != null)
+            {
+                double percent = (double)code.OfferPercentt / 100;
+                ViewBag.aftercheckout = sum_ - (sum_ * percent);
+                return View();
+            }
+            else
+            {
+                ViewBag.aftercheckout = sum_;
+                return View();
+            }
+           
         }
     }
 }

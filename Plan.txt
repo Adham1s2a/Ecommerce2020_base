@@ -69,5 +69,5 @@ ayham: itemdetails design and adminindex
 -----------------------------------------------------------------------------------
 17 - 18/11/2020
 
-adham : offer,pagination home index
+adham : offer,pagination home index   Done.
 ayham: videos, itemdetails, 

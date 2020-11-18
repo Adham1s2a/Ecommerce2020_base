@@ -1,5 +1,9 @@
-﻿@model HomeViewModel;
+﻿
 
+@using X.PagedList.Mvc.Core;@*import to get HTML Helper*@
+@using X.PagedList;
+
+@model IEnumerable<Ecommerce.Models.Item>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -22,7 +26,7 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
 
-            @foreach (var category in Model.CategoryList)
+            @foreach (var category in ViewBag.Categories)
             {
                 var photopath = "~/Images/" + (category.Photopath ?? "noimage.jpg");
 
@@ -137,7 +141,7 @@
                 <ul class="dropdown-menu" role="menu">
                     <li>
 
-                        @foreach (var category in Model.CategoryList)
+                        @foreach (var category in ViewBag.Categories)
                         {
 
                             <a asp-controller="home" asp-action="CategoryItems" asp-route-id="@category.ID">
@@ -209,7 +213,7 @@
                     <!--features_items-->
                     <h2 id="features items" class="title text-center">Features Items</h2>
 
-                    @foreach (var item in Model.ItemList)
+                    @foreach (var item in Model)
                     {
                         var photopath = "~/Images/" + (item.Photopath ?? "noimage.jpg");
                         <div class="col-sm-4">
@@ -224,22 +228,30 @@
                                         <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default "><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
                                     @*<div class="@*product-overlay">
-                                            <div class="overlay-content">
-                                                <h2>@item.SellPrice</h2>
-                                                <p>@item.SellPrice</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-                                        </div>*@
+                            <div class="overlay-content">
+                                <h2>@item.SellPrice</h2>
+                                <p>@item.SellPrice</p>
+                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            </div>
+                        </div>*@
                                 </div>
                                 @*<div class="choose">
-                                        <ul class="nav nav-pills nav-justified">
-                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                        </ul>
-                                    </div>*@
+                        <ul class="nav nav-pills nav-justified">
+                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                        </ul>
+                    </div>*@
                             </div>
                         </div>
                     }
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("index", new { page = page }),
+                          new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+                          {
+                              DisplayItemSliceAndTotal = false,
+                              ContainerDivClasses = new[] { "navigation" },
+                              LiElementClasses = new[] { "page-item" },
+                              PageClasses = new[] { "page-link" },
+                          })
                 </div><!--features_items-->
                 @*<div class="category-tab">
                         category-tab
@@ -550,7 +562,7 @@
                                                 <video controls="controls">
                                                     <source src="~/videos/WhatsApp%20Video%202020-11-16%20at%2023.12.59.mp4" type="video/mp4" />
                                                 </video>
-      
+
                                             </div>
 
                                         </div>
