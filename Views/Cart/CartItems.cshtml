@@ -53,10 +53,12 @@
                                     <p id="price">@catitem.item.SellPrice € </p>
                                 </td>
                                 <td class="cart_quantity">
-                                    <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href=""> + </a>
+                                    <div class="cart_quantity_button"  >
+                                        @*<a class="cart_quantity_up" > + </a>*@
+                                        @*<input type="button" value="Add to cart" class="btn btn-default" onclick="AddToCart(@item.ID)" />*@
+                                        <input type="button" value="+" class="cart_quantity_up" onclick="IncCart(@catitem.item.ID,@catitem.Q)" />
                                         <input id="quantity" class="cart_quantity_input" type="text" name="quantity" value=@catitem.Q autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href=""> - </a>
+                                        <a class="cart_quantity_down" href="" onclick="IncCart(@catitem.item.ID,@catitem.Q)"> - </a>
                                     </div>
                                 </td>
                                 <td class="cart_total">
@@ -159,7 +161,37 @@
     </div>
 </section><!--/#do_action-->
 @*<script language="javascript" type="text/javascript">
-    var Q = document.getElementById('quantity');
-    var P = document.getElementById('price');
-    document.getElementById('total').innerHTML = Q + P;
-</script>*@
+        var Q = document.getElementById('quantity');
+        var P = document.getElementById('price');
+        document.getElementById('total').innerHTML = Q + P;
+    </script>*@
+
+@section Scripts {
+    <script>
+         function AddToCart(ItemId) {
+
+            $.ajax({
+
+                url: '@Url.Action("AddtoCart","Cart")',
+                type: "POST",
+                data: { id: ItemId },
+                success: alert("Added successfully")
+
+                }
+            )
+        }
+        function IncCart(ItemId,q) {
+
+            $.ajax({
+
+                url: '@Url.Action("AddtoCart","Cart")',
+                type: "POST",
+                data: { id: ItemId },
+                success: function () {
+                    $('#quantity').append(q+1)
+                }
+
+                }
+            )}
+    </script>
+}

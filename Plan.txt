@@ -70,4 +70,15 @@ ayham: itemdetails design and adminindex
 17 - 18/11/2020
 
 adham : offer,pagination home index   Done.
-ayham: videos, itemdetails, 
+ayham: videos, itemdetail.
+
+-----------------------------------------------------------------------------------
+20/11/2020
+
+adham + ayham : ajax  done :)
+to check the quantity on each add to cart .
++  -  
+user image
+
+
+

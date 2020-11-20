@@ -58,7 +58,7 @@ namespace Ecommerce.Controllers
             return -1;
         }
 
-        public IActionResult AddtoCart(int id,string returnUrl)
+        public void AddtoCart(int id)
         {
             //ViewBag.pathb = Request.GetDisplayUrl();
             //string absolutepath = HttpContext.Current.Request.Url.AbsolutePath;
@@ -90,7 +90,7 @@ namespace Ecommerce.Controllers
                 }
                 HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
-              return Redirect(Request.Headers["Referer"].ToString());
+            //  return Redirect(Request.Headers["Referer"].ToString());
             
         }
 

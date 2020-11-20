@@ -92,6 +92,20 @@
                 el: '.swiper-pagination',
             },
         });
+
+
+
+        function AddToCart(ItemId) {
+
+            $.ajax({
+
+                url: '@Url.Action("AddtoCart","Cart")',
+                type: "POST",
+                data: { id: ItemId },
+                success: alert("Added successfully")
+                }
+            )}
+
     </script>
 }
 <div class="row">
@@ -225,7 +239,8 @@
                                         </a>
                                         <h2>@item.ItemName</h2>
                                         <p>@item.SellPrice</p>
-                                        <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default "><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        @*<a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default "><i class="fa fa-shopping-cart"></i>Add to cart</a>*@
+                                        <input type="button" value="Add to cart" class="btn btn-default" onclick="AddToCart(@item.ID)"  />
                                     </div>
                                     @*<div class="@*product-overlay">
                             <div class="overlay-content">
