@@ -59,8 +59,9 @@ namespace Ecommerce.Controllers
         }
 
 
-        public IActionResult After_Checkout(string OfferCode)
+        public double After_Checkout(string OfferCode)
         {
+            double r;
 
             var code = _context.Offers
               .FirstOrDefault(m => m.OfferCode == OfferCode);
@@ -72,14 +73,14 @@ namespace Ecommerce.Controllers
             {
                 double percent = (double)code.OfferPercentt / 100;
                 ViewBag.aftercheckout = sum_ - (sum_ * percent);
-                return View();
+                r= sum_ - (sum_ * percent);
             }
             else
             {
                 ViewBag.aftercheckout = sum_;
-                return View();
+                r= sum_;
             }
-           
+            return r;
         }
     }
 }

@@ -4,6 +4,7 @@
 @using Ecommerce.ViewModels;
 @using Newtonsoft.Json;
 @using Microsoft.AspNetCore.Session;
+@model Offer
 
 <section id="cart_items">
     <div class="container">
@@ -43,7 +44,9 @@
 
                             <tr>
                                 <td class="cart_product" style="width: 100px;">
-                                    <img src="@photopath" style="width: 100px;" alt="">
+                                    <a asp-controller="home" asp-action="ItemDetails" asp-route-id="@catitem.item.ID">
+                                        <img src="@photopath" style="width: 100px;" alt="">
+                                    </a>
                                 </td>
                                 <td class="cart_description">
                                     <h4><a href="">@catitem.item.ItemName</a></h4>
@@ -53,7 +56,7 @@
                                     <p id="price">@catitem.item.SellPrice € </p>
                                 </td>
                                 <td class="cart_quantity">
-                                    <div class="cart_quantity_button"  >
+                                    <div class="cart_quantity_button">
                                         @*<a class="cart_quantity_up" > + </a>*@
                                         @*<input type="button" value="Add to cart" class="btn btn-default" onclick="AddToCart(@item.ID)" />*@
                                         <input type="button" value="+" class="cart_quantity_up" onclick="IncCart(@catitem.item.ID,@catitem.Q)" />
@@ -91,73 +94,90 @@
             <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
         </div>
         <div class="row">
-            <div class="col-sm-6">
-                <div class="chose_area">
-                    <ul class="user_option">
-                        <li>
-                            <input type="checkbox">
-                            <label>Use Coupon Code</label>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <label>Use Gift Voucher</label>
-                        </li>
-                        <li>
-                            <input type="checkbox">
-                            <label>Estimate Shipping & Taxes</label>
-                        </li>
-                    </ul>
-                    <ul class="user_info">
-                        <li class="single_field">
-                            <label>Country:</label>
-                            <select>
-                                <option>United States</option>
-                                <option>Bangladesh</option>
-                                <option>UK</option>
-                                <option>India</option>
-                                <option>Pakistan</option>
-                                <option>Ucrane</option>
-                                <option>Canada</option>
-                                <option>Dubai</option>
-                            </select>
+            @*<div class="col-sm-6">
+                    <div class="chose_area">
+                        <ul class="user_option">
+                            <li>
+                                <input type="checkbox">
+                                <label>Use Coupon Code</label>
+                            </li>
+                            <li>
+                                <input type="checkbox">
+                                <label>Use Gift Voucher</label>
+                            </li>
+                            <li>
+                                <input type="checkbox">
+                                <label>Estimate Shipping & Taxes</label>
+                            </li>
+                        </ul>
+                        <ul class="user_info">
+                            <li class="single_field">
+                                <label>Country:</label>
+                                <select>
+                                    <option>United States</option>
+                                    <option>Bangladesh</option>
+                                    <option>UK</option>
+                                    <option>India</option>
+                                    <option>Pakistan</option>
+                                    <option>Ucrane</option>
+                                    <option>Canada</option>
+                                    <option>Dubai</option>
+                                </select>
 
-                        </li>
-                        <li class="single_field">
-                            <label>Region / State:</label>
-                            <select>
-                                <option>Select</option>
-                                <option>Dhaka</option>
-                                <option>London</option>
-                                <option>Dillih</option>
-                                <option>Lahore</option>
-                                <option>Alaska</option>
-                                <option>Canada</option>
-                                <option>Dubai</option>
-                            </select>
+                            </li>
+                            <li class="single_field">
+                                <label>Region / State:</label>
+                                <select>
+                                    <option>Select</option>
+                                    <option>Dhaka</option>
+                                    <option>London</option>
+                                    <option>Dillih</option>
+                                    <option>Lahore</option>
+                                    <option>Alaska</option>
+                                    <option>Canada</option>
+                                    <option>Dubai</option>
+                                </select>
 
-                        </li>
-                        <li class="single_field zip-field">
-                            <label>Zip Code:</label>
-                            <input type="text">
-                        </li>
-                    </ul>
-                    <a class="btn btn-default update" href="">Get Quotes</a>
-                    <a class="btn btn-default check_out" href="">Continue</a>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="total_area">
-                    <ul>
-                        <li>Cart Sub Total <span>$59</span></li>
-                        <li>Eco Tax <span>$2</span></li>
-                        <li>Shipping Cost <span>Free</span></li>
-                        <li>Total <span>$61</span></li>
-                    </ul>
-                    <a class="btn btn-default update" href="">Update</a>
-                    <a class="btn btn-default check_out" href="">Check Out</a>
-                </div>
+                            </li>
+                            <li class="single_field zip-field">
+                                <label>Zip Code:</label>
+                                <input type="text">
+                            </li>
+                        </ul>
+                        <a class="btn btn-default update" href="">Get Quotes</a>
+                        <a class="btn btn-default check_out" href="">Continue</a>
+                    </div>
+                </div>*@
+            <div class="container">
+
+                <form 
+                      method="post" class="mt-3">
+                    <div class="col-sm-6">
+                        <div class="total_area">
+                            <ul>
+                                <li>Cart Total <span> @ViewBag.total €</span></li>
+                                <li>
+                                    <input id="offercode" asp-for="OfferCode" class="form-control" placeholder="OfferCode">
+                                    <span asp-validation-for="OfferCode" class="text-danger"></span>
+                                </li>
+
+                                <li>Shipping Cost <span>Free</span></li>
+                                <li> Total <input  readonly id="tt" style="text-align:right; background: rgba(0, 0, 0, 0);float:right; border: none;" disabled/></li>
+                                
+                            </ul>
+                            @*<a class="btn btn-default update" href="">Update</a>*@
+                            @*<a class="btn btn-default check_out" href="">Check Out</a>*@
+                          
+                            <input type="button" value="Submit" class="btn btn-primary" onclick="checkcobon()" />
+                          
+                        </div>
+                    </div>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                </form>
             </div>
         </div>
+
     </div>
 </section><!--/#do_action-->
 @*<script language="javascript" type="text/javascript">
@@ -172,7 +192,7 @@
 
             $.ajax({
 
-                url: '@Url.Action("AddtoCart","Cart")',
+                url: '@Url.Action("AddtoCart", "Cart")',
                 type: "POST",
                 data: { id: ItemId },
                 success: alert("Added successfully")
@@ -192,6 +212,24 @@
                 }
 
                 }
-            )}
+            )
+        }
+        function checkcobon() {
+
+            $.ajax({
+
+                url: '@Url.Action("After_Checkout", "Checkout")',
+                type: "POST",
+                data: { OfferCode: $("#offercode").val() },
+                success: function (data) {
+                    //alert("Request Successful" + data);
+                    $("#tt").val(data+'€');
+                    
+                }
+            }
+
+            )       
+        }
+
     </script>
 }

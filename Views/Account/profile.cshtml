@@ -1,12 +1,10 @@
 ﻿@using Ecommerce.Models
 @using Ecommerce.ViewModels
-@{ Layout = "";}
 @model ApplicationUser;
 @{
-    ViewData["Title"] = "Profile Page";
-
+    Layout = "";
 }
-
+<title>Profile</title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 @*<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>*@
 @*<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
@@ -28,7 +26,7 @@
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
-                        @Model.UserName
+                        @Model.FirstName @Model.LastName
                     </h5>
                     <h6>
                         @Model.Email
@@ -72,7 +70,7 @@
                                 <label>Name</label>
                             </div>
                             <div class="col-md-6">
-                                <p>@Model.UserName</p>
+                                <p>@Model.FirstName  @Model.LastName</p>
                             </div>
                         </div>
                         <div class="row">
@@ -91,14 +89,22 @@
                                 <p>@Model.PhoneNumber</p>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Adress</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.ZipCode,@Model.City,@Model.Address</p>
+                            </div>
+                        </div>
                         @*<div class="row">
-                                <div class="col-md-6">
-                                    <label>Profession</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Web Developer and Designer</p>
-                                </div>
-                            </div>*@
+            <div class="col-md-6">
+                <label>Profession</label>
+            </div>
+            <div class="col-md-6">
+                <p>Web Developer and Designer</p>
+            </div>
+        </div>*@
                     </div>
                     @*<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">

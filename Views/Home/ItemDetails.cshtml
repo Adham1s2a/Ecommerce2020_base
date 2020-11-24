@@ -18,8 +18,8 @@
 
                     }
                     <div class="preview-pic tab-content">
-                        <div class="tab-pane active" id="pic-1"><img src=@photopath alt="Image" onclick="window.open('@photopath');"/></div>
-                        <div class="tab-pane" id="pic-2"><img src=@photopath2 alt="Image" onclick="window.open('@photopath2');"/></div>
+                        <div class="tab-pane active" id="pic-1"><img src=@photopath alt="Image" onclick="window.open('@photopath');" /></div>
+                        <div class="tab-pane" id="pic-2"><img src=@photopath2 alt="Image" onclick="window.open('@photopath2');" /></div>
                         <div class="tab-pane" id="pic-3"><img src=@photopath1 alt="Image" onclick="window.open('@photopath1');" /></div>
 
                         <ul class="preview-thumbnail nav nav-tabs">
@@ -61,14 +61,38 @@
                             <span class="color blue"></span>
                         </h5>*@
                     <div class="action">
-                        <a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@Model.ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        @*<a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@Model.ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>*@
                         @*<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>*@
+                        <input type="button" value="Add to cart" class="btn btn-default" onclick="AddToCart(@Model.ID)" style="
+    float: left;
+    margin-top: 500px;
+    margin-left: 300px;
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+"/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script>
+    function AddToCart(ItemId) {
+
+            $.ajax({
+
+                url: '@Url.Action("AddtoCart","Cart")',
+                type: "POST",
+                data: { id: ItemId },
+                success: alert("Added successfully")
+                }
+            )
+        }
+
+    </script>
+}
 
 <script src="~/js/owl.carousel.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

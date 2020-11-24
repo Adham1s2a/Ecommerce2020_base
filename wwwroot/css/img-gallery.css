@@ -68,13 +68,18 @@ img {
         animation-name: opacity;
         -webkit-animation-duration: .3s;
         animation-duration: .3s;
+        border-radius: 100%;
     }
 
 .card {
+    background-image: url(../img/shopping-cart-plain-background_23-2148288244.jpg);
+   /* background-repeat: repeat;*/
+    background-size: 1300px;
     margin-top: 50px;
-    background: #eee;
+    /* background: #eee;*/
     padding: 3em;
     line-height: 1.5em;
+    margin-bottom: 50px;
 }
 
 @media screen and (min-width: 997px) {
