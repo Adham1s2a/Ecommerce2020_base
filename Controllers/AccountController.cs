@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text.RegularExpressions;
@@ -9,8 +10,10 @@ using Ecommerce.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
 
 using Microsoft.AspNetCore.Mvc;
+
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,8 +26,9 @@ namespace Ecommerce.Controllers
         private readonly Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManger;
         private readonly SignInManager<ApplicationUser> signInManger;
         private readonly IUserRepository UserRepository;
-        
-        public AccountController(Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManger, SignInManager<ApplicationUser> signInManger,IUserRepository userRepository ) //using the constructor to add User manager ( for  identity user) and sign in manager services
+        private readonly IHostingEnvironment hostingEnvironment;
+
+        public AccountController(Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManger, SignInManager<ApplicationUser> signInManger, IUserRepository userRepository ,IHostingEnvironment hostingEnvironment) //using the constructor to add User manager ( for  identity user) and sign in manager services
         {
            
             this.userManger = userManger;
@@ -212,7 +216,93 @@ namespace Ecommerce.Controllers
             return View();
 
         }
-       
+
+
+
+        private string Processuploadfile(EditUserViewModel model)
+        {
+            // If the Photo property on the incoming model object is not null, then the user
+            // has selected an image to upload.
+            string UniqueFile = null;
+            if (model.photo != null)
+            {
+
+                // The image must be uploaded to the images folder in wwwroot
+                // To get the path of the wwwroot folder we are using the inject
+                // HostingEnvironment service provided by ASP.NET Core
+                // string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                string UploadsFolder = "C:\\Users\\Adham Moamer\\source\\repos\\Ecommerce2020_base\\wwwroot\\Images";
+
+                // To make sure the file name is unique we are appending a new
+                // GUID value and and an underscore to the file name
+                UniqueFile = Guid.NewGuid().ToString() + "_" + model.photo.FileName;
+                // Use CopyTo() method provided by IFormFile interface to
+                // copy the file to wwwroot/images folder
+                string Filepath = Path.Combine(UploadsFolder, UniqueFile);
+                model.photo.CopyTo(new FileStream(Filepath, FileMode.Create));
+            }
+
+            return UniqueFile;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit_profile()
+        {
+
+            ApplicationUser user1 = await userManger.FindByIdAsync(User.Identity.GetUserId());
+            EditUserViewModel model = new EditUserViewModel()
+            {
+              id = user1.Id,
+              FirstName = user1.FirstName,
+              LastName= user1.LastName,
+              City=user1.City,
+              Address=user1.Address,
+              ZipCode= user1.ZipCode,
+              excistingphotopath = user1.UserPhoto
+              
+
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit_profile(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user1 = await userManger.FindByIdAsync(User.Identity.GetUserId());
+
+                user1.FirstName = model.FirstName;
+                user1.LastName = model.LastName; 
+                user1.City = model.City;
+                user1.Address = model.Address;
+                user1.ZipCode = model.ZipCode;
+               
+                if (model.photo != null)
+                {
+                    user1.UserPhoto = Processuploadfile(model);
+                }
+                var result = await userManger.UpdateAsync(user1);
+
+                // If user is successfully created, sign-in the user using
+                // SignInManager and redirect to index action of HomeController
+                if (result.Succeeded)
+                {
+
+                    return View("Account","profile");
+
+                }
+                // If there are any errors, add them to the ModelState object
+                // which will be displayed by the validation summary tag helper
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+
+            }
+            return View();
+        }
 
     }
 }

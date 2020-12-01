@@ -20,6 +20,8 @@ namespace Ecommerce.Models
         public string ZipCode { get; set; }
   
         public string Address { get; set; }
-        
+        public string UserPhoto { get; set; }
+
+
     }
 }

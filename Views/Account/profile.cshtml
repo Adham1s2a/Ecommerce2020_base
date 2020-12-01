@@ -3,6 +3,7 @@
 @model ApplicationUser;
 @{
     Layout = "";
+    var photopath = "/Images/" + (Model.UserPhoto ?? "noimage.jpg");
 }
 <title>Profile</title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -16,14 +17,16 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    @*<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />*@
+                    <img src=@photopath />
                     <div class="file btn btn-lg btn-primary">
                         Change Photo
                         <input type="file" name="file" />
+
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
+                <a asp-controller="Account" , asp-action="Edit_profile">Edit</a>
                 <div class="profile-head">
                     <h5>
                         @Model.FirstName @Model.LastName
@@ -98,13 +101,13 @@
                             </div>
                         </div>
                         @*<div class="row">
-            <div class="col-md-6">
-                <label>Profession</label>
-            </div>
-            <div class="col-md-6">
-                <p>Web Developer and Designer</p>
-            </div>
-        </div>*@
+                                <div class="col-md-6">
+                                    <label>Profession</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Web Developer and Designer</p>
+                                </div>
+                            </div>*@
                     </div>
                     @*<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
