@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -28,7 +28,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="PagedList" Version="1.17.0" />
+    <PackageReference Include="PayPal" Version="1.9.1" />
     <PackageReference Include="ReflectionIT.Mvc.Paging" Version="4.0.0" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="X.PagedList.Mvc.Core" Version="8.0.7" />
   </ItemGroup>
@@ -42,6 +44,10 @@
     <None Include="wwwroot\images\flaticon\svg\004-offer.svg" />
     <None Include="wwwroot\images\flaticon\svg\005-discount.svg" />
     <None Include="wwwroot\images\flaticon\svg\006-timer.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Paypal\" />
   </ItemGroup>
 
 </Project>

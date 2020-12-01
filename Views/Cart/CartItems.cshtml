@@ -82,7 +82,11 @@
             </table>
             <br />
             <a asp-controller="home" asp-action="index"> Continue Shopping</a>
-            <a asp-controller="checkout" asp-action="checkout">Checkout</a>
+            <form method="post" asp-controller="Paypal" asp-action="checkout">
+
+                <input type="hidden" name="total" value="@ViewBag.total" />
+                <input type="submit"  value="Checkout" />
+            </form>
         </div>
     </div>
 </section> <!--/#cart_items-->
