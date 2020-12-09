@@ -25,13 +25,25 @@ namespace Ecommerce.Controllers
         }
 
 
-        public IActionResult Index(int? page)
-        {         
+        public IActionResult Index(int? page,string search)
+        {
+            ViewData["search"] = search;
             ViewBag.Categories = icategory.GetAllCategories();                     
             var pageNumber = page ?? 1; // if no page is specified, default to the first page (1)
             int pageSize = 3; // Get 3 Items for each requested page.
-            var onePageOfItems = iitem.GetAllItems().ToPagedList(pageNumber, pageSize);
-            return View(onePageOfItems); // Send 3 Items to the page.         
+           
+            if (string.IsNullOrEmpty(search))
+            {
+                var onePageOfItems = iitem.GetAllItems().ToPagedList(pageNumber, pageSize);
+                return View(onePageOfItems); // Send 3 Items to the page.  
+            }
+            else
+            {
+                var onePageOfItems = iitem.Search(search).ToPagedList(pageNumber, pageSize);
+                return View(onePageOfItems); // Send 3 Items to the page.  
+            }
+           
+              
         }
 
         public IActionResult test_item()

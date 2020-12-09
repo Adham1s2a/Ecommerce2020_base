@@ -71,6 +71,14 @@ namespace Ecommerce.Models
             throw new NotImplementedException();
         }
 
+      
+        public List<Item> Search(string search)
+        {
+            return (from all in context.Items where all.IsDeleted != true && all.ItemName.Contains(search) select all).ToList();
+
+            throw new NotImplementedException();
+        }
+
         public Item UpdateItem(Item Itemchange)
         {
             var item = context.Items.Attach(Itemchange);

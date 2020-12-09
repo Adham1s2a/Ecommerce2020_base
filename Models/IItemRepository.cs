@@ -14,5 +14,7 @@ namespace Ecommerce.Models
         Item UpdateItem(Item Itemchange);
         Item Delete(int id);        
         int getcatID(int id);
+
+        List<Item> Search(string search);
     }
 }
