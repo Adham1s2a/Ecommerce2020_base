@@ -29,13 +29,10 @@
                 <tbody>
                     @if (ViewBag.datafound == 0)
                     {
-
                         <tr>
-
                             @ViewBag.message;
                         </tr>
                     }
-
                     else
                     {
                         @foreach (var catitem in ViewBag.cart)
@@ -59,9 +56,10 @@
                                     <div class="cart_quantity_button">
                                         @*<a class="cart_quantity_up" > + </a>*@
                                         @*<input type="button" value="Add to cart" class="btn btn-default" onclick="AddToCart(@item.ID)" />*@
-                                        <input type="button" value="+" class="cart_quantity_up" onclick="IncCart(@catitem.item.ID,@catitem.Q)" />
-                                        <input id="quantity" class="cart_quantity_input" type="text" name="quantity" value=@catitem.Q autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href="" onclick="IncCart(@catitem.item.ID,@catitem.Q)"> - </a>
+                                        <input type="button" value=" + " class="cart_quantity_up" style="float:left" onclick="Add_Cart(@catitem.item.ID,@catitem.Q)" />
+                                        <input id="quantity" class="cart_quantity_input"   type="text" name="quantity" value=@catitem.Q autocomplete="off" size="2">
+                                        @*<a class="cart_quantity_down" href="" onclick="IncCart(@catitem.item.ID,@catitem.Q)"> - </a>*@
+                                        <input type="button" value=" - " class="cart_quantity_up"  onclick="Dec_Cart(@catitem.item.ID,@catitem.Q)" />
                                     </div>
                                 </td>
                                 <td class="cart_total">
@@ -204,7 +202,7 @@
                 }
             )
         }
-        function IncCart(ItemId,q) {
+        function Add_Cart(ItemId,q) {
 
             $.ajax({
 
@@ -212,9 +210,23 @@
                 type: "POST",
                 data: { id: ItemId },
                 success: function () {
-                    $('#quantity').append(q+1)
+                    var qtt = parseInt($('#quantity').val(), 10);
+                    $('#quantity').val(qtt + 1);
                 }
+                }
+            )
+        }
+           function Dec_Cart(ItemId,q) {
 
+            $.ajax({
+
+                url: '@Url.Action("DectoCart","Cart")',
+                type: "POST",
+                data: { id: ItemId },
+                success: function () {
+                    var qtt = parseInt($('#quantity').val(), 10);
+                    $('#quantity').val(qtt - 1);
+                }
                 }
             )
         }
@@ -228,12 +240,10 @@
                 success: function (data) {
                     //alert("Request Successful" + data);
                     $("#tt").val(data+'€');
-                    
+
                 }
             }
-
-            )       
+            )
         }
-
     </script>
 }

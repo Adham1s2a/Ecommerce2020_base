@@ -44,7 +44,7 @@ namespace Ecommerce
             services.AddScoped<IUserRepository, SQLUserRepository>();
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();//To Store session in Memory, This is default implementation of IDistributedCache    
-            services.AddDistributedMemoryCache();
+           
 
             services.AddSession(options =>
             {

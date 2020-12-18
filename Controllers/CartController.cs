@@ -58,7 +58,7 @@ namespace Ecommerce.Controllers
             return -1;
         }
 
-        public void AddtoCart(int id)
+        public IActionResult AddtoCart(int id)
         {
             //ViewBag.pathb = Request.GetDisplayUrl();
             //string absolutepath = HttpContext.Current.Request.Url.AbsolutePath;
@@ -90,10 +90,40 @@ namespace Ecommerce.Controllers
                 }
                 HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
+            return Ok();
+
             //  return Redirect(Request.Headers["Referer"].ToString());
             
         }
+        public IActionResult DectoCart(int id)
+        {
+            //ViewBag.pathb = Request.GetDisplayUrl();
+            //string absolutepath = HttpContext.Current.Request.Url.AbsolutePath;
+            CartViewModel item = new CartViewModel()
+            {
+                item = itemRepository.GetItem(id),
+                Q = 1
+            };
 
+
+            
+                List<CartViewModel> cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart");
+                int index = IsExist(id);
+                if (index != -1)
+                {
+                    cart[index].Q--;
+                }
+                else
+                {
+                   
+                }
+                HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            
+            return Ok();
+
+          
+
+        }
         public IActionResult Remove(int id)
         {
             List<CartViewModel> cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session,"cart");
