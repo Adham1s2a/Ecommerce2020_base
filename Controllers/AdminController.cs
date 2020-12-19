@@ -185,7 +185,7 @@ namespace Ecommerce.Controllers
                 int catid = itemRepository.getcatID(item.ID);
 
                 itemRepository.UpdateItem(item);
-                return RedirectToAction("CategoryItems", new { id = catid });
+                return RedirectToAction("CategoryItemsAdmin", new { id = catid, page = 1 });
             }
             return View();
         }       

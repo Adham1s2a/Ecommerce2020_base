@@ -6,6 +6,8 @@
 @model IEnumerable<Ecommerce.Models.Item>
 @{
     ViewData["Title"] = "Home Page";
+    double IsAvailable;
+    bool enable;
 }
 
 
@@ -237,17 +239,28 @@
                     @foreach (var item in Model)
                     {
                         var photopath = "~/Images/" + (item.Photopath ?? "noimage.jpg");
+
+
+                        if (item.Quantity ==0) { IsAvailable = 0.5; } else { IsAvailable = 1; }
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <a asp-controller="home" asp-action="ItemDetails" asp-route-id="@item.ID">
-                                            <img src="@photopath" asp-append-version="true" alt="" />
+                                            <img src="@photopath" asp-append-version="true" alt="" style="opacity:@IsAvailable" />
                                         </a>
                                         <h2>@item.ItemName</h2>
                                         <p>@item.SellPrice</p>
                                         @*<a asp-controller="Cart" asp-action="AddtoCart" asp-route-id="@item.ID" class="btn btn-default "><i class="fa fa-shopping-cart"></i>Add to cart</a>*@
-                                        <input type="button" value="Add to cart" class="btn btn-default" onclick="AddToCart(@item.ID)"  />
+                                        @if (IsAvailable == 1)
+                                          {
+                                            <input type="button" value="Add to cart"  class="btn btn-default" onclick="AddToCart(@item.ID)" /> 
+                                          }
+                                         else
+                                         {
+                                            <input type="button" value="Add to cart" disabled class="btn btn-default" onclick="AddToCart(@item.ID)" />
+                                         }
+
                                     </div>
                                     @*<div class="@*product-overlay">
                             <div class="overlay-content">
