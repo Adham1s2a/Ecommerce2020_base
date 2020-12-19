@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -270,6 +271,9 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
+         
+                  
+
                 ApplicationUser user1 = await userManger.FindByIdAsync(User.Identity.GetUserId());
 
                 user1.FirstName = model.FirstName;
@@ -283,13 +287,14 @@ namespace Ecommerce.Controllers
                     user1.UserPhoto = Processuploadfile(model);
                 }
                 var result = await userManger.UpdateAsync(user1);
+           
 
                 // If user is successfully created, sign-in the user using
                 // SignInManager and redirect to index action of HomeController
                 if (result.Succeeded)
                 {
 
-                    return View("Account","profile");
+                    return RedirectToAction("profile"); 
 
                 }
                 // If there are any errors, add them to the ModelState object
