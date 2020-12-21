@@ -18,11 +18,9 @@
             <div class="col-md-4">
                 <div class="profile-img">
                     <img src=@photopath  />
-                    @*<div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file" />
-
-                    </div>*@
+                    <div class="file btn btn-lg btn-primary">                     
+                        <a asp-controller="Account" , asp-action="Edit_profile" style="color: lightgrey;">Edit</a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">

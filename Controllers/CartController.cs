@@ -47,86 +47,82 @@ namespace Ecommerce.Controllers
 
         private int IsExist(int id)
         {
-            List <CartViewModel> cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart");
+            List<CartViewModel> cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart");
             for (int i = 0; i < cart.Count; i++)
             {
-                if(cart[i].item.ID.Equals(id))
+                if (cart[i].item.ID.Equals(id))
                 {
                     return i;
-                }             
+                }
             }
             return -1;
         }
 
         public IActionResult AddtoCart(int id)
         {
-            //ViewBag.pathb = Request.GetDisplayUrl();
-            //string absolutepath = HttpContext.Current.Request.Url.AbsolutePath;
-            CartViewModel item = new CartViewModel()
+            int _quntity;
+           CartViewModel item = new CartViewModel()
             {
                 item = itemRepository.GetItem(id),
                 Q = 1
             };
-
-
-            if (HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session,"cart") == null)
+            _quntity = item.item.Quantity;
+           
+            if (HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart") == null)
             {
 
                 List<CartViewModel> cart = new List<CartViewModel>();
                 cart.Add(item);
-                HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);      
+                HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                return Ok();
             }
             else
             {
                 List<CartViewModel> cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart");
                 int index = IsExist(id);
-                if(index != -1)
+                if (index != -1 && cart[index].Q < _quntity)
                 {
                     cart[index].Q++;
+                    HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                    return Ok();
                 }
                 else
                 {
-                    cart.Add(item);
+                    return StatusCode(33);
                 }
-                HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);
+               
             }
-            return Ok();
+      
 
             //  return Redirect(Request.Headers["Referer"].ToString());
-            
+
         }
         public IActionResult DectoCart(int id)
         {
-            //ViewBag.pathb = Request.GetDisplayUrl();
-            //string absolutepath = HttpContext.Current.Request.Url.AbsolutePath;
+
             CartViewModel item = new CartViewModel()
             {
                 item = itemRepository.GetItem(id),
                 Q = 1
             };
 
-
-            
-                List<CartViewModel> cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart");
-                int index = IsExist(id);
-                if (index != -1)
-                {
-                    cart[index].Q--;
-                }
-                else
-                {
-                   
-                }
+            List<CartViewModel> cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart");
+            int index = IsExist(id);
+            if (index != -1 && cart[index].Q > 0)
+            {
+                cart[index].Q--;
                 HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);
-            
-            return Ok();
-
-          
+                return Ok();
+            }
+            else
+            {
+                return StatusCode(33);
+            }
 
         }
         public IActionResult Remove(int id)
         {
-            List<CartViewModel> cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session,"cart");
+            List<CartViewModel> cart = HelperClass.GetObjectFromJson<List<CartViewModel>>(HttpContext.Session, "cart");
             int index = IsExist(id);
             cart.RemoveAt(index);
             HelperClass.SetObjectAsJson(HttpContext.Session, "cart", cart);
